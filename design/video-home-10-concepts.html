@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MOTION｜ホームデザイン10案</title>
+  <style>
+    :root { color-scheme: dark; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #111216; color: #f6f5f7; }
+    button { font: inherit; cursor: pointer; }
+    .intro { max-width: 1320px; margin: auto; padding: 54px 32px 28px; }
+    .eyebrow { color: #bdb5c9; font-size: 12px; font-weight: 800; letter-spacing: .24em; }
+    h1 { margin: 10px 0 14px; font-size: clamp(30px, 4vw, 56px); letter-spacing: -.07em; line-height: 1.18; }
+    .intro p { max-width: 820px; margin: 0; color: #bcbcc4; line-height: 1.8; font-size: 15px; }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .legend span { padding: 7px 12px; border: 1px solid #3a3a45; border-radius: 999px; color: #c9c9d1; font-size: 12px; }
+    .board { max-width: 1320px; margin: auto; padding: 18px 32px 80px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+    .concept { min-width: 0; border: 1px solid #34343f; border-radius: 26px; background: #1a1b20; overflow: hidden; }
+    .concept-head { padding: 22px 25px 16px; display: flex; justify-content: space-between; gap: 15px; align-items: start; }
+    .concept-num { color: #9898a5; font-size: 12px; font-weight: 800; letter-spacing: .18em; }
+    .concept h2 { margin: 4px 0 3px; font-size: 23px; letter-spacing: -.05em; }
+    .concept-head p { color: #aaaab5; font-size: 12px; line-height: 1.5; margin: 0; }
+    .expand { white-space: nowrap; border: 1px solid #494954; border-radius: 12px; background: #25252c; color: #f4f4f5; padding: 8px 12px; font-size: 12px; }
+    .expand:hover { background: #373741; }
+    .concept-body { display: grid; grid-template-columns: minmax(0, 1fr) 155px; gap: 19px; align-items: center; padding: 0 25px 24px; }
+    .phone-wrap { display: flex; justify-content: center; }
+    .phone { --bg:#030304; --surface:#202024; --accent:#f6d755; --text:#f6f3f6; --muted:#a6a3ac; --g1:#d56f9f; --g2:#4569c8; --g3:#d89b4c; width: 300px; height: 600px; flex: none; position: relative; isolation: isolate; overflow: hidden; border: 4px solid #4b4b52; border-radius: 40px; background: var(--bg); color: var(--text); box-shadow: 0 22px 50px #0007; }
+    .phone::before { content:""; position: absolute; z-index: -1; inset: 48px -10px 135px; background: radial-gradient(ellipse at 35% 45%, var(--g2), transparent 38%), radial-gradient(ellipse at 67% 48%, var(--g3), transparent 35%), radial-gradient(ellipse at 50% 68%, var(--g1), transparent 43%); filter: blur(35px); opacity: .62; }
+    .phone::after { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(#0007 0%,transparent 19%,transparent 57%,var(--bg) 84%); pointer-events:none; }
+    .phone-top { height: 54px; padding: 18px 18px 0; display: flex; justify-content: space-between; align-items: start; }
+    .brand { font-size: 15px; font-weight: 900; letter-spacing: -.06em; }
+    .brand b { color: var(--accent); }
+    .top-action { border: 0; border-radius: 99px; background: var(--accent); color: #111; font-size: 11px; font-weight: 900; padding: 5px 12px; }
+    .hero-art { height: 210px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px 26px 0; }
+    .hero-art small { display: block; margin-bottom: 9px; color: var(--accent); font-size: 9px; font-weight: 800; letter-spacing: .18em; }
+    .hero-art strong { font-size: 17px; line-height: 1.58; letter-spacing: -.055em; text-wrap: balance; }
+    .hero-art strong em { font-style: normal; background: linear-gradient(95deg,var(--g3),var(--g1),var(--g2)); color: transparent; background-clip: text; }
+    .art-chip { display: none; }
+    .category-head { height: 46px; display: flex; justify-content: space-between; align-items: center; padding: 0 17px; }
+    .category-head span { font-size: 15px; font-weight: 750; letter-spacing: -.04em; }
+    .category-head i { display: flex; justify-content: center; align-items: center; width: 29px; height: 29px; border-radius: 50%; font-size: 21px; font-style: normal; color: var(--accent); background: var(--surface); }
+    .categories { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px 3px; padding: 5px 10px 0; }
+    .cat { min-width: 0; text-align: center; }
+    .icon { display: flex; align-items: center; justify-content: center; margin: auto; width: 43px; height: 43px; border-radius: 50%; background: radial-gradient(circle at 25% 20%, #ffffffaa, transparent 34%), var(--icon); box-shadow: inset 0 -7px 13px #0004, 0 5px 10px #0006; font-size: 23px; }
+    .cat label { display: block; margin-top: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); font-size: 8px; }
+    .search { position: absolute; right: 14px; bottom: 69px; left: 14px; height: 39px; border-radius: 99px; display:flex; align-items:center; gap:8px; padding: 0 10px; background: var(--surface); color: var(--muted); font-size: 10px; }
+    .search .spark { font-size: 18px; color: var(--g1); }
+    .search .plus { margin-left: auto; font-size: 21px; line-height: 1; color: var(--accent); }
+    .tabs { position: absolute; inset: auto 0 0; height: 58px; display: grid; grid-template-columns: repeat(4,1fr); align-items:center; border-top: 1px solid #ffffff24; background: color-mix(in srgb,var(--bg),transparent 8%); }
+    .tabs span { display: grid; justify-items: center; line-height: 1.15; color: var(--muted); font-size: 8px; }
+    .tabs span:first-child { color: var(--accent); }
+    .tabs b { font-size: 18px; font-weight: 500; }
+    .concept-info { align-self: stretch; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+    .concept-info h3 { margin: 0 0 6px; font-size: 11px; color: #a6a6b2; letter-spacing: .13em; }
+    .concept-info p { margin: 0; font-size: 12px; color: #e1e0e5; line-height: 1.65; }
+    .swatches { display: flex; gap: 6px; }
+    .swatches i { height: 27px; flex: 1; border-radius: 7px; border: 1px solid #ffffff24; }
+    .surface-demo { background: var(--bg); border: 1px solid #ffffff2c; border-radius: 11px; padding: 10px; color: var(--text); font-size: 9px; }
+    .surface-demo div { display: flex; justify-content: space-between; align-items: center; border-radius: 7px; background: var(--surface); padding: 7px; margin-top: 6px; }
+    .surface-demo b { color: var(--accent); font-size: 10px; }
+    .concept-footer { padding: 12px 25px 16px; border-top: 1px solid #34343f; display: flex; gap: 7px; flex-wrap: wrap; }
+    .concept-footer span { color: #b8b8c2; font-size: 10px; border: 1px solid #45454f; border-radius: 99px; padding: 3px 8px; }
+    .phone[data-layout="editorial"] .hero-art { align-items: flex-start; text-align:left; padding-left:20px; }
+    .phone[data-layout="editorial"] .hero-art strong { font-size: 21px; }
+    .phone[data-layout="editorial"] .category-head { border-top: 1px solid #ffffff33; margin: 0 14px; padding: 0 4px; }
+    .phone[data-layout="glass"] .hero-art strong { padding: 14px; border: 1px solid #ffffff56; border-radius: 17px; background: #ffffff12; backdrop-filter: blur(8px); }
+    .phone[data-layout="glass"] .search { border: 1px solid #ffffff58; background: #ffffff22; backdrop-filter: blur(10px); }
+    .phone[data-layout="neon"] .hero-art strong { text-shadow: 0 0 22px var(--g1); }
+    .phone[data-layout="neon"] .icon { box-shadow: 0 0 14px var(--icon), inset 0 -7px 13px #0005; }
+    .phone[data-layout="orbit"] .hero-art { position:relative; }
+    .phone[data-layout="orbit"] .hero-art::before { content:""; position:absolute; width:175px; height:175px; border:1px solid #ffffff4b; border-radius:50%; transform: rotate(-22deg) scaleY(.48); }
+    .phone[data-layout="orbit"] .hero-art::after { content:"✦"; position:absolute; top:47px; right:35px; color:var(--accent); font-size:24px; }
+    .phone[data-layout="tiles"] .categories { gap: 5px; padding-inline: 9px; }
+    .phone[data-layout="tiles"] .cat { border-radius:11px; background:var(--surface); padding:5px 2px; }
+    .phone[data-layout="tiles"] .icon { width:38px; height:38px; }
+    .phone[data-layout="ribbon"] .hero-art { justify-content:flex-end; padding-bottom:24px; }
+    .phone[data-layout="ribbon"] .hero-art::before { content:"VIDEO / IDEAS / MOTION"; position:absolute; top:100px; left:-18px; right:-18px; transform:rotate(-9deg); border-block:1px solid #ffffff85; padding:6px; font-size:10px; letter-spacing:.28em; color:var(--accent); }
+    .phone[data-layout="soft"] .icon { border-radius:18px; }
+    .phone[data-layout="soft"] .search { border-radius:13px; }
+    .phone[data-layout="frame"] .hero-art { position:relative; margin:8px 15px 0; height:202px; padding:0; border:1px solid #ffffff6e; border-radius:18px; overflow:hidden; }
+    .phone[data-layout="frame"] .hero-art::before { content:"● REC"; position:absolute; z-index:3; top:8px; left:12px; font-size:9px; color:var(--accent); }
+    .phone[data-layout="frame"] .cat-pick { border:0; background:none; color:inherit; padding:0; font:inherit; cursor:pointer; }
+    .phone[data-layout="frame"] .cat-pick.is-picked .icon { outline:2px solid var(--accent); outline-offset:2px; }
+    .rec-demo-orb { position:absolute; width:118px; height:118px; border-radius:50%; background:radial-gradient(circle at 30% 25%,#ffffff78,transparent 35%),radial-gradient(circle at 74% 78%,#26bbeb,transparent 36%),radial-gradient(circle at 23% 71%,#e967b8,transparent 38%),#5d3c72; box-shadow:0 0 30px #d764bd,0 20px 35px #1689c688; }
+    .rec-demo-selected { position:absolute; z-index:2; inset:24px 7px 5px; display:grid; grid-template-columns:repeat(5,1fr); align-content:space-around; justify-items:center; gap:3px; overflow-y:auto; }
+    .rec-demo-selected span { display:grid; justify-items:center; width:43px; color:#fff; font-size:7px; white-space:nowrap; text-shadow:0 1px 5px #000; }
+    .rec-demo-selected b { display:grid; place-items:center; width:31px; height:31px; border-radius:50%; background:var(--icon); font-size:17px; box-shadow:0 0 12px var(--icon); }
+    .rec-demo-hint { position:absolute; z-index:2; bottom:8px; color:#fff; font-size:9px; text-shadow:0 2px 5px #000; }
+    .phone[data-layout="mono"] .icon { filter:saturate(.45); }
+    .phone[data-layout="mono"] .hero-art strong em { background:linear-gradient(95deg,var(--accent),#fff); background-clip:text; }
+    .phone[data-layout="sunset"] .hero-art { justify-content:flex-end; padding-bottom:23px; }
+    .phone[data-layout="sunset"]::before { opacity:.9; filter:blur(22px); }
+    .phone[data-layout="sunset"] .category-head { background:linear-gradient(90deg,transparent,#ffffff11,transparent); }
+    dialog { padding:0; border:0; background:none; max-width:calc(100vw - 20px); max-height:calc(100vh - 20px); color:#fff; }
+    dialog::backdrop { background:#08080de8; backdrop-filter:blur(8px); }
+    .dialog-inner { padding:18px; background:#202027; border:1px solid #55545c; border-radius:24px; display:grid; justify-items:center; gap:13px; }
+    .dialog-top { width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .dialog-top strong { font-size:17px; }
+    .dialog-top button { border:0; background:#3c3b44; color:#fff; border-radius:99px; padding:8px 13px; }
+    .dialog-inner .phone { transform:scale(1.12); transform-origin:top center; margin-bottom:75px; }
+    @media (max-width: 1060px) { .board { grid-template-columns:1fr; max-width:680px; } }
+    @media (max-width: 600px) { .intro { padding:34px 18px 18px; } .board { padding:10px 12px 50px; gap:16px; } .concept-head { padding:18px 16px 12px; } .concept-body { grid-template-columns:1fr; padding:0 12px 16px; } .concept-info { display:grid; grid-template-columns:1fr 1fr; padding:2px 10px; gap:14px; } .concept-info .surface-sample { grid-column:1 / -1; } .concept-footer { padding-inline:16px; } }
+  </style>
+</head>
+<body>
+  <header class="intro">
+    <span class="eyebrow">MOTION / DESIGN STUDY</span>
+    <h1>動画を選ぶホーム、10の表情。</h1>
+    <p>参考画像の漆黒、にじむ多色の光、丸い選択肢を引き継いだホーム案です。「コスチューム」は動画カテゴリに置き換えました。各案の配色は「探す・お気に入り・設定」にも共通で使う想定です。</p>
+    <div class="legend"><span>1ファイルで10案</span><span>ホーム＋全画面共通カラー</span><span>4タブ：ホーム / 探す / お気に入り / 設定</span><span>各案の「拡大」を押すと詳細表示</span></div>
+  </header>
+  <main class="board" id="board"></main>
+  <dialog id="zoom"><div class="dialog-inner"><div class="dialog-top"><strong id="zoom-title"></strong><button type="button" id="close">閉じる ✕</button></div><div id="zoom-content"></div></div></dialog>
+  <script>
+    const categories = [
+      ["🎬","シネマ","#df433b"],["👗","ファッション","#db72a2"],["📦","商品紹介","#d9932b"],["✈️","旅行","#4b9bbd"],["🍜","フード","#85b653"],
+      ["🧑","ポートレート","#9f6ec7"],["✨","VFX","#6e51cd"],["🏎️","スポーツ","#3594d0"],["🎨","アニメ","#d965ba"],["🎵","音楽","#c65468"]
+    ];
+    const concepts = [
+      {name:"Aurora Original", note:"参考画像に最も近い、静かな多色の光。", layout:"classic", colors:["#030304","#222126","#f5d65b","#d16ca4","#496abb","#dd9d51"], lead:"画像の余韻をそのまま動画の入口に", detail:"黒い余白と中央のオーロラを主役に。見慣れた操作感を維持しやすい案。", tags:["忠実な方向","落ち着いた印象"]},
+      {name:"Rose Cinema", note:"ピンクと紫で、創作したくなる夜。", layout:"neon", colors:["#08040c","#26182a","#ff78bd","#bc4fc9","#493ab4","#f0a258"], lead:"想像したシーンを、動く映像へ", detail:"映画風やVFXの鮮やかさが映える。ボタンと選択状態にローズを使用。", tags:["華やか","SNS向け"]},
+      {name:"Midnight Editorial", note:"雑誌のように文字と作品を見せる。", layout:"editorial", colors:["#06070b","#1b1d25","#d7d1f2","#8570b9","#36577e","#b58369"], lead:"次に作る動画の、雰囲気から選ぶ。", detail:"光を抑え、文字の読みやすさを優先。探す画面も誌面風のカード構成に。", tags:["読みやすい","上品"]},
+      {name:"Prism Glass", note:"透ける面と虹色の反射。", layout:"glass", colors:["#050609","#242831","#a9eeed","#b68cef","#4f9bbf","#e1a681"], lead:"ひらめきを、透明なキャンバスに", detail:"カテゴリと検索欄をガラス風に。全画面の情報ブロックも透過面で統一。", tags:["未来感","軽やか"]},
+      {name:"Orbit Motion", note:"円軌道と動きを感じる構図。", layout:"orbit", colors:["#030812","#172333","#f0df69","#7e61d3","#287bb5","#ee8353"], lead:"アイデアが巡る、動画スタイルの宇宙", detail:"円形アイコンとの相性が良い。お気に入り画面にも軌道モチーフを展開。", tags:["遊び心","動きの印象"]},
+      {name:"Color Tiles", note:"丸いカテゴリをカードに収めて整理。", layout:"tiles", colors:["#07070c","#27232d","#f2a7d8","#d15a9f","#6d5abe","#df994c"], lead:"作りたい世界を、色から探そう", detail:"カテゴリ数が増えても整理しやすい。設定画面もタイル型の項目で統一。", tags:["分類しやすい","拡張向け"]},
+      {name:"Studio Ribbon", note:"制作スタジオのラベルを重ねる。", layout:"ribbon", colors:["#050507","#242226","#ffcd4a","#df5a7e","#5f70cf","#e59552"], lead:"あなたの次の一本は、ここから。", detail:"写真・動画編集のスタジオ感。見出し帯を各画面の案内にも活用。", tags:["制作感","明快"]},
+      {name:"Soft Pop", note:"やわらかなネオンと親しみやすさ。", layout:"soft", colors:["#090810","#302631","#c5f3b1","#de8aac","#7093cb","#f0b876"], lead:"好きなムードを選んで、動画へ", detail:"角を少し丸め、カテゴリを押しやすく。初めて使う人にも親しみやすい。", tags:["親しみやすい","やさしい"]},
+      {name:"Director Frame", note:"選んだ動画カテゴリがREC枠に集まる。", layout:"frame", colors:["#040506","#1d2427","#d7f16c","#9f6bba","#3e779b","#cf705d"], lead:"映像の主役を、いま選ぼう", detail:"カテゴリは何個でも選択可能。選んだアイコンをREC枠にまとめ、スタイル探しへつなげる。", tags:["複数選択","動画らしい"]},
+      {name:"Quiet Spectrum", note:"色を絞り、作品だけに注目させる。", layout:"mono", colors:["#08080a","#222228","#ece7e1","#9e81ad","#526f91","#bc8d73"], lead:"余白から生まれる、次のアイデア", detail:"アクセントは白に近く、光は控えめ。全画面で作品のサムネイルを引き立てる。", tags:["ミニマル","長く使える"]}
+    ];
+    const board = document.querySelector("#board");
+    const phone = (c) => `
+      <div class="phone" data-layout="${c.layout}" style="--bg:${c.colors[0]};--surface:${c.colors[1]};--accent:${c.colors[2]};--g1:${c.colors[3]};--g2:${c.colors[4]};--g3:${c.colors[5]}">
+        <div class="phone-top"><span class="brand">MOTION<b>•</b></span><span class="top-action">探す ↗</span></div>
+        ${c.layout === "frame" ? '<div class="hero-art"><span class="rec-demo-orb"></span><span class="rec-demo-hint">下のカテゴリをいくつでも選択</span><div class="rec-demo-selected"></div></div>' : `<div class="hero-art"><small>MAKE YOUR NEXT VIDEO</small><strong><em>${c.lead}</em><br>スタイルから、はじめよう。</strong></div>`}
+        <div class="category-head"><i>‹</i><span>動画のカテゴリ</span><i>›</i></div>
+        <div class="categories">${categories.map(([icon,label,color],i)=>c.layout === "frame" ? `<button class="cat cat-pick" type="button" data-category="${i}" aria-label="${label}を選択" aria-pressed="false"><span class="icon" style="--icon:${color}">${icon}</span><label>${label}</label></button>` : `<div class="cat"><span class="icon" style="--icon:${color}">${icon}</span><label>${label}</label></div>`).join("")}</div>
+        <div class="search"><span class="spark">✺</span><span>作りたい動画のスタイルを探す</span><span class="plus">＋</span></div>
+        <div class="tabs"><span><b>⌂</b>ホーム</span><span><b>▦</b>探す</span><span><b>♡</b>お気に入り</span><span><b>⚙</b>設定</span></div>
+      </div>`;
+    board.innerHTML = concepts.map((c,i)=>`
+      <section class="concept" style="--bg:${c.colors[0]};--surface:${c.colors[1]};--accent:${c.colors[2]};--text:#f6f3f6">
+        <div class="concept-head"><div><span class="concept-num">CONCEPT ${String(i+1).padStart(2,"0")}</span><h2>${c.name}</h2><p>${c.note}</p></div><button class="expand" type="button" data-index="${i}">拡大 ↗</button></div>
+        <div class="concept-body"><div class="phone-wrap">${phone(c)}</div><aside class="concept-info"><div><h3>DESIGN IDEA</h3><p>${c.detail}</p></div><div><h3>APP COLORS</h3><div class="swatches">${c.colors.slice(0,3).map(x=>`<i style="background:${x}" title="${x}"></i>`).join("")}</div></div><div class="surface-sample"><h3>OTHER TABS</h3><div class="surface-demo">探す / お気に入り / 設定<div>保存したスタイル <b>♡ 03</b></div></div></div></aside></div>
+        <div class="concept-footer">${c.tags.map(t=>`<span>${t}</span>`).join("")}</div>
+      </section>`).join("");
+    const dialog = document.querySelector("#zoom");
+    const pickCategory = e => {
+      const button = e.target.closest(".cat-pick");
+      if (!button) return false;
+      button.classList.toggle("is-picked");
+      const picked = button.classList.contains("is-picked");
+      const label = categories[Number(button.dataset.category)][1];
+      button.setAttribute("aria-pressed",String(picked));
+      button.setAttribute("aria-label",`${label}を${picked ? "選択解除" : "選択"}`);
+      const phone = button.closest(".phone");
+      const chosen = [...phone.querySelectorAll(".cat-pick.is-picked")].map(item => categories[Number(item.dataset.category)]);
+      phone.querySelector(".rec-demo-selected").innerHTML = chosen.map(([icon,name,color])=>`<span style="--icon:${color}"><b>${icon}</b>${name}</span>`).join("");
+      phone.querySelector(".rec-demo-hint").hidden = chosen.length > 0;
+      return true;
+    };
+    board.addEventListener("click", e => {
+      if (pickCategory(e)) return;
+      const button = e.target.closest(".expand");
+      if (!button) return;
+      const c = concepts[Number(button.dataset.index)];
+      document.querySelector("#zoom-title").textContent = c.name;
+      document.querySelector("#zoom-content").innerHTML = phone(c);
+      dialog.showModal();
+    });
+    document.querySelector("#close").addEventListener("click",()=>dialog.close());
+    dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close(); else pickCategory(e); });
+  </script>
+</body>
+</html>

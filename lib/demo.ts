@@ -54,6 +54,18 @@ const entries = [
     "effects",
     "見慣れた形に、意外な動きを。アートや抽象的な世界観の表現に。",
   ],
+  [
+    "animal-adventure",
+    "動物たちの小さな冒険",
+    "animals",
+    "森を駆ける動物たちの一瞬を、物語のように切り取るスタイル。ペットや自然を題材にした紹介にも。",
+  ],
+  [
+    "sports-moment",
+    "決定的なスポーツシーン",
+    "sports",
+    "動きの頂点を鮮やかに見せる。試合のハイライトやチーム紹介に。",
+  ],
 ] as const;
 // Separate fixtures, never a production fallback. Database seeds remain drafts.
 export const demoTemplates: Template[] = entries.map(
@@ -64,7 +76,7 @@ export const demoTemplates: Template[] = entries.map(
     category,
     description,
     preview_url: "",
-    poster_url: `/demo/${slug}.svg`,
+    poster_url: `/demo/${slug}.jpg`,
     aspect_ratio: "9:16",
     is_published: true,
     sort_order: i,

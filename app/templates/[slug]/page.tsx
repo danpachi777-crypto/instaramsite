@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicTemplate } from "@/lib/templates";
-import { configIssue, isDemo } from "@/lib/env";
+import { configIssue } from "@/lib/env";
 import { categories } from "@/lib/validation";
 import { Preview } from "@/components/preview";
-import { WaitlistForm } from "@/components/waitlist-form";
+import { MobileNav } from "@/components/site";
+import { FavoriteButton } from "@/components/favorite-button";
 type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (configIssue()) return { title: "準備中" };
@@ -36,6 +37,7 @@ export default async function TemplateDetail({ params }: Props) {
             {categories[template.category]} · {template.aspect_ratio}
           </span>
           <h1>{template.title}</h1>
+          <FavoriteButton slug={template.slug} title={template.title} />
           <p className="detail-description">{template.description}</p>
           <div className="usage">
             <h2>こんな制作に</h2>
@@ -43,31 +45,13 @@ export default async function TemplateDetail({ params }: Props) {
               {template.description} 気になる世界観を、次のリールのアイデアに。
             </p>
           </div>
-          <a className="button primary" href="#template-waitlist">
-            このテンプレートの先行案内に登録する{" "}
-            <span aria-hidden="true">↗</span>
-          </a>
-          <p className="micro">
-            作例を準備しているテンプレートには仮のイメージを表示しています。動画生成と決済は未提供です。
-          </p>
+          <button className="button primary" type="button" disabled aria-describedby="creation-status">
+            このテンプレートで動画を作る <span aria-hidden="true">↗</span>
+          </button>
+          <p className="micro" id="creation-status">動画作成機能は準備中です。</p>
         </div>
       </div>
-      <section className="signup-section detail-signup" id="template-waitlist">
-        <div>
-          <span className="eyebrow">このスタイルが気になったら</span>
-          <h2>
-            「{template.title}」の
-            <br />
-            先行案内を受け取る。
-          </h2>
-          <p>選んだテンプレートと一緒にお申し込みを受け付けます。</p>
-        </div>
-        <WaitlistForm
-          demo={isDemo()}
-          source="template"
-          templateId={template.id}
-        />
-      </section>
+      <MobileNav active="templates" />
     </main>
   );
 }

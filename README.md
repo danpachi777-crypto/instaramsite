@@ -1,20 +1,23 @@
-# MOTION — AI動画テンプレートの先行案内サイト
+# MOTION — AI動画テンプレートサイト
 
-Instagramから訪れた人がスタイルを探し、好きなテンプレートの先行案内へ登録する、日本語のMVPです。公開画面、Supabaseへの登録処理、管理画面、SQL、初期データ、検証を実装しています。外部公開・Supabaseプロジェクトの作成や接続設定はまだ行っていません。
+現行UIには近未来デザイン案「01 · イオンブルー」の深い青とシアンの配色を適用しています。10案のローカル比較は `public/design/futuristic-current-ui-10.html` で確認できます（埋め込み表示には `python3 design/serve-futuristic-preview.py` を使用）。
+
+Instagramから訪れた人が動画のスタイルを探し、テンプレートをお気に入りに保存できるMVPです。公開画面、管理画面、SQL、初期データ、検証を実装しています。動画作成機能は準備中です。外部公開・Supabaseプロジェクトの作成や接続設定はまだ行っていません。
 
 **動画生成・決済・一般利用者アカウント・アップロード・自動メール送信は実装していません。** 元の要件全文は [仕様書](docs/SPECIFICATION.md)、保守上の指示は [CODEX_PROMPT.md](CODEX_PROMPT.md) に保存しています。
 
 ## 実装した機能
 
-- `/`：紹介、公開おすすめ、3段階の使い方、同意付き登録フォーム。
-- `/templates`：5カテゴリーの絞り込み、選択状態、該当なし・解除。
-- `/templates/[slug]`：公開された詳細、縦横比、作例、対象付き登録。下書き・存在しないURLは404。
+- `/`：左右の矢印で切り替えるテンプレートプレビューと言語選択。
+- `/templates`：動物・スポーツを含む7カテゴリーの絞り込み、選択状態、該当なし・解除。
+- `/templates/[slug]`：公開された詳細、縦横比、作例、動画作成ボタン。下書き・存在しないURLは404。
+- `/favorites`・`/settings`：お気に入りの再表示・削除。
 - `/privacy`・`/terms`：運営者が確認・追記する項目を明示した下書き。
 - `/admin/login`：手動作成したSupabase Authアカウントのログイン。
 - `/admin`：件数と最近の登録。
 - `/admin/templates`・`/new`・`/[id]`：作成・編集・表示順・公開状態の変更。
 - `/admin/subscribers`：25件ずつの一覧、テンプレート・登録日による絞り込み、全対象CSV、個別の削除確認。
-- `POST /api/waitlist`：4 KiBの上限、入力検証、同意記録、隠し入力、共有DBの回数制限、初回情報を維持する重複処理。
+- `POST /api/waitlist`：旧登録API。現在は410を返し、新規登録を受け付けません。
 
 ## 構成と前提
 
@@ -25,9 +28,9 @@ app/                    公開画面・管理画面・API・メタデータ
 components/             フォーム・プレビュー・共通画面
 lib/                    検証・認証・環境設定・DB接続・CSV・UTM
 proxy.ts                管理ルートの認証クッキー更新（権限判定は各処理）
-public/demo/            独自の仮画像9点・無音用字幕
+public/demo/            ImageGenによる静止画11点・従来の仮画像・無音用字幕
 supabase/migrations/    履歴管理された構造変更
-supabase/seed.sql       編集を上書きしない非公開下書き9種類
+supabase/seed.sql       編集を上書きしない初期の非公開下書き9種類
 supabase/maintenance.sql 回数制限記録を削除する定期処理
 supabase/tests/         DBの権限とRLSを確認するSQL
 scripts/test-db.mjs     実DBでの結合・同時実行テスト
@@ -51,7 +54,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-`http://localhost:3000` を開きます。**デモ表示中：メール登録は利用できません** と表示され、9種類の独立した見本を閲覧できます。フォームと管理操作は無効です。本番の下書きデータを公開する機能ではありません。
+`http://localhost:3000` を開くと、動物・スポーツを含む11種類の独立した見本を閲覧できます。デモでは管理操作は無効です。本番の下書きデータを公開する機能ではありません。
 
 ```sh
 npm run build
@@ -89,7 +92,7 @@ psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f supabase/migrations/20261110000000_in
 psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f supabase/seed.sql
 ```
 
-構造変更は一度だけ適用します。以後は別の日時付きSQLを追加し、適用履歴を運用記録に残してください。既存環境で初期構造変更を再実行しないでください。seedは `slug` の競合時に何もせず、何度実行しても編集・公開状態を上書きしません。初期9種類はすべて非公開です。
+構造変更は一度だけ適用します。既存環境で初期構造変更を再実行しないでください。初期構造変更の後に `supabase/migrations/20261113000000_animal_sports_categories.sql` と `supabase/migrations/20261113000001_generated_posters.sql` を順に適用してください。前者は動物・スポーツの分類と下書き2件を追加します。後者は既定のSVG画像を使っている行だけ生成JPEGへ切り替え、独自に設定した画像や公開状態は維持します。seedと動物・スポーツの追加SQLは `slug` の競合時に既存行を変更しません。新しい行は非公開で登録されます。
 
 Supabase CLIで管理する場合は、CLIを公式手順で導入して `supabase init`・`supabase link --project-ref <PROJECT_REF>` を行い、`supabase db push` でマイグレーションを適用できます。上のpsql適用と混在させず、採用した方法の履歴を管理してください。seedとmaintenanceは上記psqlで適用できます。
 

@@ -5,6 +5,8 @@ export const categories = {
   lifestyle: "ライフスタイル",
   cinematic: "映画風",
   effects: "特殊効果",
+  animals: "動物",
+  sports: "スポーツ",
 } as const;
 export const categorySchema = z.enum([
   "fashion",
@@ -12,6 +14,8 @@ export const categorySchema = z.enum([
   "lifestyle",
   "cinematic",
   "effects",
+  "animals",
+  "sports",
 ]);
 export const aspectRatios = ["9:16", "1:1", "16:9", "4:5"] as const;
 export const uuid = z.uuid();

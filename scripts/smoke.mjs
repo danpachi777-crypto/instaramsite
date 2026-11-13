@@ -9,15 +9,17 @@ async function check(path, status, text) {
   if (text) assert.ok(html.includes(text), `${path}: content`);
   console.log(`成功 ${status} ${path}`);
 }
-await check("/", 200, "デモ表示中：メール登録は利用できません");
+await check("/", 200, "どんな動画を作りたい？");
 await check("/templates", 200, "ランウェイウォーク");
 await check("/templates?category=effects", 200, "不思議な物体の回転");
+await check("/templates?category=animals", 200, "動物たちの小さな冒険");
+await check("/templates?category=sports", 200, "決定的なスポーツシーン");
 await check(
   "/templates?category=unknown",
   200,
   "該当するテンプレートはありません",
 );
-await check("/templates/runway-walk", 200, "プレビュー準備中");
+await check("/templates/runway-walk", 200, "このテンプレートで動画を作る");
 await check("/templates/does-not-exist", 404, "ページが見つかりません");
 await check("/privacy", 200, "未設定");
 await check("/terms", 200, "下書き");
@@ -39,8 +41,8 @@ const result = await fetch(new URL("/api/waitlist", base), {
     source: "hero",
   }),
 });
-assert.equal(result.status, 503);
+assert.equal(result.status, 410);
 assert.deepEqual(await result.json(), {
-  message: "デモ表示中：メール登録は利用できません",
+  message: "この機能は終了しました。",
 });
-console.log("成功 503 /api/waitlist（デモでは保存・成功表示なし）");
+console.log("成功 410 /api/waitlist（新規登録を停止）");

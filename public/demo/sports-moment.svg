@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="650" viewBox="0 0 400 650" role="img" aria-label="決定的なスポーツシーンの仮のイメージ。プレビュー準備中">
+  <defs>
+    <linearGradient id="arena" x2="1" y2="1"><stop stop-color="#102f48"/><stop offset=".6" stop-color="#102039"/><stop offset="1" stop-color="#09111f"/></linearGradient>
+    <linearGradient id="uniform" x2="1" y2="1"><stop stop-color="#72e6f5"/><stop offset="1" stop-color="#2a87af"/></linearGradient>
+    <radialGradient id="light"><stop stop-color="#94e8ff" stop-opacity=".55"/><stop offset="1" stop-color="#94e8ff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="400" height="650" fill="url(#arena)"/>
+  <circle cx="90" cy="195" r="145" fill="url(#light)"/>
+  <circle cx="350" cy="255" r="135" fill="url(#light)"/>
+  <path d="M0 498Q200 454 400 498M0 535Q200 489 400 535M0 580Q200 528 400 580" fill="none" stroke="#4b7796" stroke-opacity=".45" stroke-width="3"/>
+  <path d="M27 87l180 160M47 62l200 150M314 102l-200 182" stroke="#d2f4ff" stroke-opacity=".16" stroke-width="9"/>
+  <circle cx="216" cy="183" r="29" fill="#d7edf0"/>
+  <path d="M182 222q44-23 74 7l33 104l-67 33l-49-96Z" fill="url(#uniform)"/>
+  <path d="M181 247l-80 47l-25-33M251 244l76-83l24 8" fill="none" stroke="#c9e6e8" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M215 360l-93 97l-35-4M257 340l69 94l-26 52" fill="none" stroke="#d7edf0" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M86 454l-42 15M300 486l17 41" stroke="#84ddf2" stroke-width="19" stroke-linecap="round"/>
+  <circle cx="345" cy="125" r="37" fill="#f3a762" stroke="#ffce91" stroke-width="3"/>
+  <path d="M309 125h72M345 88v74M319 100q50 28 52 48M319 151q48-23 51-49" stroke="#8d4e33" stroke-width="3" fill="none"/>
+  <path d="M29 31h29M29 31v29m342-29h-29m29 0v29M29 619h29m-29 0v-29m342 29h-29m29 0v-29" stroke="#a8e9f5" stroke-opacity=".5" stroke-width="2" fill="none"/>
+  <text x="30" y="77" fill="#c7eff7" font-family="sans-serif" font-size="11" letter-spacing="3">MOTION / STYLE 11</text>
+  <rect x="65" y="574" width="270" height="35" rx="17" fill="#07131f" opacity=".9"/>
+  <text x="200" y="597" text-anchor="middle" fill="#e5f9fc" font-family="sans-serif" font-size="14">仮のイメージ · プレビュー準備中</text>
+</svg>

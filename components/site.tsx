@@ -1,22 +1,42 @@
 import Link from "next/link";
 import { categories, type Template } from "@/lib/validation";
 import { Preview } from "@/components/preview";
+import { FavoriteButton } from "@/components/favorite-button";
+import { LanguageSwitcher } from "@/components/language";
 export function Header() {
   return (
     <header className="site-header">
-      <Link href="/" className="wordmark" aria-label="MOTION ホーム">
-        MOTION<span className="brand-dot">•</span>
-      </Link>
+      <div className="header-start">
+        <LanguageSwitcher />
+        <Link href="/" className="wordmark" aria-label="MOTION ホーム">
+          MOTION<span className="brand-dot">•</span>
+        </Link>
+      </div>
       <nav aria-label="メインメニュー">
-        <Link href="/templates">テンプレート</Link>
-        <Link href="/#how" className="nav-how">
-          使い方
-        </Link>
-        <Link href="/#waitlist" className="nav-cta">
-          先行案内に登録<span aria-hidden="true">↗</span>
-        </Link>
+        <Link href="/">ホーム</Link>
+        <Link href="/templates">探す</Link>
+        <Link href="/favorites" className="nav-how">お気に入り</Link>
+        <Link href="/settings" className="nav-cta">設定<span aria-hidden="true">↗</span></Link>
       </nav>
     </header>
+  );
+}
+export function MobileNav({ active }: { active: "home" | "templates" | "favorites" | "settings" }) {
+  return (
+    <nav className="mobile-tabbar" aria-label="スマホ用メニュー">
+      <Link href="/" aria-current={active === "home" ? "page" : undefined}>
+        <span className="tab-icon" aria-hidden="true">⌂</span><span>ホーム</span>
+      </Link>
+      <Link href="/templates" aria-current={active === "templates" ? "page" : undefined}>
+        <span className="tab-icon" aria-hidden="true">▦</span><span>探す</span>
+      </Link>
+      <Link href="/favorites" aria-current={active === "favorites" ? "page" : undefined}>
+        <span className="tab-icon" aria-hidden="true">♡</span><span>お気に入り</span>
+      </Link>
+      <Link href="/settings" aria-current={active === "settings" ? "page" : undefined}>
+        <span className="tab-icon" aria-hidden="true">⚙</span><span>設定</span>
+      </Link>
+    </nav>
   );
 }
 export function Footer() {
@@ -27,7 +47,6 @@ export function Footer() {
           MOTION
         </Link>
         <p>まだ見たことのない、自分のスタイルへ。</p>
-        <p className="micro">先行案内を受付中。動画生成・決済は未提供です。</p>
       </div>
       <div className="footer-links">
         <Link href="/privacy">プライバシーポリシー</Link>
@@ -41,17 +60,19 @@ export function Footer() {
 export function TemplateCard({
   template,
   index = 0,
+  compact = false,
 }: {
   template: Template;
   index?: number;
+  compact?: boolean;
 }) {
   return (
-    <article className="template-card">
+    <article className={`template-card${compact ? " compact-card" : ""}`}>
       <Link
         href={`/templates/${template.slug}`}
         aria-label={`${template.title}を詳しく見る`}
       >
-        <Preview template={template} />
+        <Preview template={template} posterOnly={compact} />
       </Link>
       <div className="card-meta">
         <span>{categories[template.category]}</span>
@@ -60,6 +81,7 @@ export function TemplateCard({
       <h3>
         <Link href={`/templates/${template.slug}`}>{template.title}</Link>
       </h3>
+      <FavoriteButton slug={template.slug} title={template.title} />
       <Link className="card-link" href={`/templates/${template.slug}`}>
         詳しく見る <span aria-hidden="true">↗</span>
       </Link>
@@ -72,8 +94,8 @@ export function EmptyTemplates() {
       <span className="eyebrow">ただいま準備中</span>
       <h2>新しいスタイルを、準備しています。</h2>
       <p>公開できる作例が整い次第、こちらでご紹介します。</p>
-      <Link className="button secondary" href="/#waitlist">
-        先行案内に登録する ↗
+      <Link className="button secondary" href="/">
+        ホームに戻る ↗
       </Link>
     </div>
   );

@@ -5,16 +5,18 @@ import type { Template } from "@/lib/validation";
 export function Preview({
   template,
   eager = false,
+  posterOnly = false,
 }: {
   template: Pick<
     Template,
     "title" | "preview_url" | "poster_url" | "aspect_ratio"
   >;
   eager?: boolean;
+  posterOnly?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
   const [posterFailed, setPosterFailed] = useState(false);
-  const available = !!template.preview_url && !failed;
+  const available = !!template.preview_url && !failed && !posterOnly;
   return (
     <div
       className="preview"
@@ -59,7 +61,11 @@ export function Preview({
             </div>
           )}
           <span className="preview-label">
-            {failed ? "動画を読み込めませんでした" : "プレビュー準備中"}
+            {failed
+              ? "動画を読み込めませんでした"
+              : posterOnly && template.preview_url
+                ? "作例は詳細で確認"
+                : "プレビュー準備中"}
           </span>
         </>
       )}

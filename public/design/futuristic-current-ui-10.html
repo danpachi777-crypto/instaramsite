@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MOTION｜現行UIの近未来カラーデザイン10案</title>
+  <style>
+    :root{font-family:Arial,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color-scheme:dark;background:#070b10;color:#edf4f6}
+    *{box-sizing:border-box}body{margin:0}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #8cefff;outline-offset:3px}
+    .intro{padding:28px clamp(18px,3vw,42px) 20px;border-bottom:1px solid #34414d;background:radial-gradient(circle at 90% 0%,#172b3b,transparent 42%),#0b1118}
+    .overline{color:#79e4ef;font-size:11px;font-weight:800;letter-spacing:.18em}.intro h1{font-size:clamp(25px,3vw,39px);line-height:1.3;letter-spacing:-.05em;margin:7px 0}.intro p{color:#aebec8;font-size:13px;line-height:1.7;margin:0;max-width:900px}
+    .workspace{display:grid;grid-template-columns:minmax(290px,340px) minmax(0,1fr);min-height:calc(100vh - 132px)}
+    .choices{padding:16px;overflow:auto;max-height:calc(100vh - 132px);border-right:1px solid #34414d;background:#0d141b}.choices h2{font-size:13px;letter-spacing:.08em;margin:0 0 12px;color:#b9c9d1}.choice-list{display:grid;gap:8px}.choice{display:grid;grid-template-columns:36px 1fr;gap:6px 10px;width:100%;text-align:left;background:#151f29;border:1px solid #3a4853;border-radius:13px;color:#e9f1f4;padding:11px 12px}.choice[aria-pressed=true]{border-color:#8de5ed;background:#1c3540;box-shadow:inset 3px 0 #8de5ed}.choice .num{grid-row:span 2;color:#80a2b0;font-size:11px;letter-spacing:.08em;padding-top:2px}.choice strong{font-size:14px}.choice small{font-size:11px;color:#a9bdc6;line-height:1.5}.swatches{grid-column:2;display:flex;gap:5px;margin-top:2px}.swatches i{width:16px;height:16px;border:1px solid #ffffff54;border-radius:50%}
+    .stage{min-width:0;padding:18px 24px 38px;background:radial-gradient(circle at 50% 0%,#172632,transparent 45%),#080c10}.stage-header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1180px;margin:0 auto 14px}.stage-header h2{font-size:20px;margin:0}.stage-header p{font-size:12px;color:#9fb2bd;margin:3px 0 0}.controls{display:flex;gap:6px;flex-wrap:wrap}.controls button{border:1px solid #415562;border-radius:999px;background:#18242e;color:#d6e3e8;padding:7px 12px;font-size:11px}.controls button[aria-pressed=true]{color:#071115;background:#9feaf1;border-color:#9feaf1;font-weight:800}.frame-wrap{display:flex;justify-content:center;align-items:flex-start;min-height:790px;border:1px solid #344450;border-radius:18px;background:linear-gradient(135deg,#0b151d,#15212b 55%,#0b121a);padding:20px;overflow:auto}.phone-shell{padding:5px;background:#293845;border:1px solid #6f8791;border-radius:27px;box-shadow:0 25px 70px #000a;transition:width .25s}.phone-shell[data-device=mobile]{width:402px;flex:none}.phone-shell[data-device=desktop]{width:min(100%,1080px);border-radius:16px}.phone-shell iframe{display:block;width:100%;height:760px;border:0;border-radius:21px;background:#040506}.phone-shell[data-device=desktop] iframe{height:740px;border-radius:11px}.note{max-width:1180px;margin:12px auto 0;color:#93a7b2;font-size:11px;line-height:1.7}
+    @media(max-width:920px){.workspace{display:block}.choices{max-height:none;border-right:0;border-bottom:1px solid #34414d}.choice-list{grid-template-columns:repeat(2,minmax(0,1fr))}.stage{padding:16px}.frame-wrap{padding:12px;min-height:0}}@media(max-width:590px){.intro{padding:23px 16px}.choice-list{grid-template-columns:1fr}.choice{grid-template-columns:30px 1fr}.stage-header{display:block}.controls{margin-top:12px}.frame-wrap{padding:7px}.phone-shell[data-device=mobile]{width:min(100%,402px)}.phone-shell iframe{height:690px}}
+  </style>
+</head>
+<body>
+  <header class="intro"><span class="overline">MOTION / CURRENT UI COLOR STUDY</span><h1>今のUIを保った、近未来デザイン10案。</h1><p>このプレビューは実際のMOTION画面を読み込み、配色・背景・境界線・光の表現だけを変更します。画面構成、文言、操作、カテゴリーやボタンの位置は現行のままです。</p></header>
+  <main class="workspace">
+    <aside class="choices" aria-label="デザイン案"><h2>デザイン案を選択</h2><div class="choice-list" id="choice-list"></div></aside>
+    <section class="stage" aria-label="実際の画面プレビュー">
+      <div class="stage-header"><div><h2 id="selected-title">01 · イオンブルー</h2><p id="selected-description"></p></div><div class="controls" id="page-controls" role="group" aria-label="画面"><button data-page="/" aria-pressed="true">ホーム</button><button data-page="/templates" aria-pressed="false">探す</button><button data-page="/favorites" aria-pressed="false">お気に入り</button><button data-page="/settings" aria-pressed="false">設定</button></div><div class="controls" id="device-controls" role="group" aria-label="表示幅"><button data-device="mobile" aria-pressed="true">スマホ</button><button data-device="desktop" aria-pressed="false">PC</button></div></div>
+      <div class="frame-wrap"><div class="phone-shell" id="shell" data-device="mobile"><iframe id="site" title="MOTIONの実画面プレビュー" src="/"></iframe></div></div>
+      <p class="note">実画面を表示しています。画面内のリンクやボタンも操作できます。デザイン案の切り替えはプレビュー内の入力内容を変えません。ローカルのデモ表示には動画生成・決済機能はありません。</p>
+    </section>
+  </main>
+  <script>
+    const themes=[
+      {name:'イオンブルー',description:'冷たい青と発光するシアン。精密機器を思わせる標準的な未来感。',bg:'#060c16',surface:'#142838',line:'#3d6a7d',text:'#effbff',muted:'#a8c7d1',accent:'#72e6f5',glow:'#338bad',effect:'grid'},
+      {name:'ラベンダー・ホログラム',description:'青紫の奥行きと薄いガラス面。柔らかく先進的な印象。',bg:'#0c0b1d',surface:'#252039',line:'#615b8c',text:'#f8f5ff',muted:'#c5bddd',accent:'#c5a9ff',glow:'#8b66db',effect:'haze'},
+      {name:'バイオミント',description:'深い緑とミントの光。親しみやすい生命科学のような未来感。',bg:'#061411',surface:'#17332d',line:'#3f7768',text:'#edfff8',muted:'#a7cfc1',accent:'#81f3ce',glow:'#39b995',effect:'orb'},
+      {name:'ソーラーフレア',description:'漆黒に琥珀の線。宇宙船の操作盤を思わせる明瞭なコントラスト。',bg:'#10100c',surface:'#30291b',line:'#806d3e',text:'#fff8e8',muted:'#d4c49b',accent:'#ffd27a',glow:'#d4973b',effect:'grid'},
+      {name:'ピンク・プラズマ',description:'紺黒と電気的なピンク。エンタメらしい大胆な発光感。',bg:'#100b18',surface:'#30213c',line:'#79517e',text:'#fff3ff',muted:'#d9b6d7',accent:'#ff91dc',glow:'#d949a5',effect:'haze'},
+      {name:'クローム・モノリス',description:'黒鉛色、銀、青白いハイライト。端正で高級感のある近未来。',bg:'#0b0e12',surface:'#232c35',line:'#5d727d',text:'#f2f7f8',muted:'#aebdc3',accent:'#d6f3ff',glow:'#6ca8c4',effect:'grid'},
+      {name:'ディープ・オーシャン',description:'深海の青緑に淡い光。落ち着きと没入感を両立。',bg:'#06131a',surface:'#12323c',line:'#427181',text:'#ebfdff',muted:'#a4c6ce',accent:'#75e8da',glow:'#1b96a7',effect:'orb'},
+      {name:'オービタル・バイオレット',description:'紫の空間とライムのアクセント。現行色を残しながら宇宙感を強める。',bg:'#0c0b19',surface:'#25223c',line:'#5e5b8c',text:'#f5f5ff',muted:'#bbb8d5',accent:'#d9f779',glow:'#876edc',effect:'orb'},
+      {name:'アークティック・ライト',description:'白に近い青灰色と氷色。明るい画面でも未来感を出す。',bg:'#e7f1f5',surface:'#f9fdff',line:'#8eb7c9',text:'#102b39',muted:'#526e7b',accent:'#006d8b',glow:'#91d4e6',effect:'light'},
+      {name:'レッドシフト',description:'暗い赤紫とコーラル。映像作品を引き立てるシネマ系の未来感。',bg:'#110c12',surface:'#30212b',line:'#855962',text:'#fff3f2',muted:'#d2b1b5',accent:'#ff9b87',glow:'#bb5963',effect:'haze'}
+    ];
+    const list=document.querySelector('#choice-list'),frame=document.querySelector('#site'),shell=document.querySelector('#shell');let active=0;
+    const hexAlpha=(hex,alpha)=>hex+alpha;
+    function themeCSS(t){
+      const light=t.effect==='light';
+      const backdrop=t.effect==='grid'?`linear-gradient(${hexAlpha(t.accent,'0b')} 1px,transparent 1px),linear-gradient(90deg,${hexAlpha(t.accent,'0b')} 1px,transparent 1px),radial-gradient(circle at 85% 5%,${hexAlpha(t.glow,'38')},transparent 36%),${t.bg}`:t.effect==='haze'?`radial-gradient(circle at 75% 8%,${hexAlpha(t.glow,'60')},transparent 42%),radial-gradient(circle at 0% 90%,${hexAlpha(t.accent,'20')},transparent 55%),${t.bg}`:`radial-gradient(circle at 50% 28%,${hexAlpha(t.glow,'5c')},transparent 47%),${t.bg}`;
+      return `:root{--bg:${t.bg};--surface:${t.surface};--line:${t.line};--text:${t.text};--muted:${t.muted};--accent:${t.accent};color-scheme:${light?'light':'dark'}!important}
+      body{background:${backdrop}!important;color:var(--text)!important}
+      .site-header,.mobile-tabbar{background:${hexAlpha(t.bg,light?'f2':'ed')}!important;border-color:var(--line)!important;box-shadow:0 6px 24px ${hexAlpha(t.glow,'22')}!important}
+      .demo-banner{background:${t.surface}!important;color:var(--text)!important;border-color:var(--line)!important}
+      .language-switcher summary,.language-options,.filters a,.settings-panel,.favorite-button,.hero-carousel-controls button,.spotlight-controls button{background:${t.surface}!important;border-color:var(--line)!important;color:var(--text)!important}
+      .filters a[aria-current=page],.primary,.mobile-spotlight-content a{background:var(--accent)!important;color:${light?'#ffffff':t.bg}!important;border-color:var(--accent)!important}
+      .favorite-button:hover,.favorite-button.is-saved,.filters a:hover{background:${t.glow}!important}
+      .preview,.hero-placeholder,.empty-state,.studio-idea textarea,.rec-frame{background-color:${t.surface}!important;border-color:var(--line)!important}
+      .preview-label,.ratio-label{background:${hexAlpha(t.surface,'e8')}!important;border-color:var(--line)!important;color:var(--text)!important}
+      .mobile-spotlight,.hero-carousel .preview{box-shadow:0 22px 55px ${hexAlpha(t.glow,'4a')}!important}
+      .mobile-spotlight-content{background:linear-gradient(transparent,${hexAlpha(t.bg,'dc')} 30%,${hexAlpha(t.bg,'f7')})!important}
+      .mobile-spotlight p{color:${light?'#e9f4f8':t.text}!important}.mobile-spotlight h2{color:#fff!important;text-shadow:0 2px 9px #000b}
+      .mobile-spotlight-content a{color:${light?'#fff':t.bg}!important}
+      .rec-frame{background:radial-gradient(circle at 50% 55%,${hexAlpha(t.glow,'99')},${t.surface} 58%,${t.bg})!important;box-shadow:inset 0 0 35px ${hexAlpha(t.glow,'3b')}!important}
+      .rec-orb{filter:hue-rotate(${active*29}deg) saturate(1.15)}
+      .rec-corner{border-color:var(--accent)!important}.studio-category.is-selected{border-color:var(--accent)!important;background:${hexAlpha(t.glow,'30')}!important}
+      .studio-category-icon{box-shadow:inset 0 -10px 16px #0005,0 4px 20px ${hexAlpha(t.glow,'66')}!important}
+      .studio-idea textarea{color:var(--text)!important}.studio-idea textarea::placeholder{color:var(--muted)!important}
+      .wordmark,.catalog-heading h1,.settings-page h1{color:var(--text)!important}
+      .mobile-tabbar a{color:var(--muted)!important}.mobile-tabbar a[aria-current=page]{color:var(--accent)!important}
+      .site-footer,.settings-panel,.template-card{border-color:var(--line)!important}
+      a:focus-visible,button:focus-visible,textarea:focus-visible{outline-color:var(--accent)!important}`;
+    }
+    function applyTheme(){const doc=frame.contentDocument;if(!doc?.head)return;let style=doc.getElementById('motion-skin-preview');if(!style){style=doc.createElement('style');style.id='motion-skin-preview';doc.head.append(style)}style.textContent=themeCSS(themes[active]);}
+    function select(index){active=index;const t=themes[index];document.querySelector('#selected-title').textContent=`${String(index+1).padStart(2,'0')} · ${t.name}`;document.querySelector('#selected-description').textContent=t.description;document.querySelectorAll('.choice').forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));applyTheme();}
+    list.innerHTML=themes.map((t,i)=>`<button type="button" class="choice" aria-pressed="${i===active}" data-index="${i}"><span class="num">${String(i+1).padStart(2,'0')}</span><strong>${t.name}</strong><small>${t.description}</small><span class="swatches"><i style="background:${t.bg}"></i><i style="background:${t.surface}"></i><i style="background:${t.accent}"></i></span></button>`).join('');
+    list.addEventListener('click',event=>{const button=event.target.closest('.choice');if(button)select(Number(button.dataset.index))});
+    frame.addEventListener('load',applyTheme);
+    document.querySelector('#page-controls').addEventListener('click',event=>{const button=event.target.closest('button[data-page]');if(!button)return;document.querySelectorAll('#page-controls button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));frame.src=button.dataset.page;});
+    document.querySelector('#device-controls').addEventListener('click',event=>{const button=event.target.closest('button[data-device]');if(!button)return;shell.dataset.device=button.dataset.device;document.querySelectorAll('#device-controls button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));});
+    document.querySelector('#selected-description').textContent=themes[active].description;
+  </script>
+</body>
+</html>

@@ -1,14 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Suspense } from "react";
 import { Header, Footer, SetupNotice } from "@/components/site";
-import { AttributionCapture } from "@/components/attribution";
+import { SiteTranslator } from "@/components/language";
 import { configIssue, isDemo, siteUrl } from "@/lib/env";
 import "./globals.css";
 export const dynamic = "force-dynamic";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#10120f",
+  themeColor: "#040506",
 };
 export async function generateMetadata(): Promise<Metadata> {
   let base: URL | undefined;
@@ -24,10 +23,10 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s | MOTION",
     },
     description:
-      "お気に入りのAI動画テンプレートを見つけて、先行案内に登録。MOTIONは動画生成サービスの先行案内を受付中です。",
+      "お気に入りのAI動画テンプレートを見つけて、作りたい動画のスタイルを探そう。",
     openGraph: {
       title: "MOTION — 次に話題になる動画は、ここから。",
-      description: "好みのAI動画スタイルを見つけよう。先行案内を受付中。",
+      description: "好みのAI動画スタイルを見つけよう。",
       locale: "ja_JP",
       type: "website",
       images: [{ url: "/og.png", width: 1200, height: 630 }],
@@ -47,14 +46,7 @@ export default function RootLayout({
           本文へ移動
         </a>
         <Header />
-        {isDemo() && (
-          <div className="demo-banner">
-            デモ表示中：メール登録は利用できません
-          </div>
-        )}
-        <Suspense>
-          <AttributionCapture />
-        </Suspense>
+        <SiteTranslator />
         <div id="main" tabIndex={-1}>
           {issue ? <SetupNotice message={issue} /> : children}
         </div>

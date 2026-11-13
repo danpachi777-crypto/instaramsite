@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="650" viewBox="0 0 400 650" role="img" aria-label="動物たちの小さな冒険の仮のイメージ。プレビュー準備中">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#143849"/><stop offset=".6" stop-color="#285c60"/><stop offset="1" stop-color="#0a1b26"/></linearGradient>
+    <linearGradient id="fur" x2="1" y2="1"><stop stop-color="#efbe8a"/><stop offset="1" stop-color="#a95d4b"/></linearGradient>
+    <radialGradient id="moon"><stop stop-color="#d5f5ee"/><stop offset="1" stop-color="#85d4d1" stop-opacity=".2"/></radialGradient>
+  </defs>
+  <rect width="400" height="650" fill="url(#sky)"/>
+  <circle cx="307" cy="138" r="112" fill="url(#moon)" opacity=".8"/>
+  <path d="M0 394Q77 336 145 377T286 360T400 374V650H0Z" fill="#173b3c"/>
+  <path d="M0 475Q83 436 169 467T400 451V650H0Z" fill="#0d2931"/>
+  <path d="M42 0v451M72 0v389M339 0v434M371 0v365" stroke="#0a2731" stroke-width="20" opacity=".8"/>
+  <path d="M36 165q60-32 90-105M366 128q-64-38-107-118" stroke="#0a2731" stroke-width="14" fill="none"/>
+  <ellipse cx="204" cy="480" rx="132" ry="25" fill="#081c24" opacity=".65"/>
+  <path d="M118 449q-48-34-49-83q32-2 55 12q26-55 72-55q45 0 73 52q34 11 49 53q-49 37-95 40Z" fill="url(#fur)"/>
+  <path d="M151 346l-10-85l62 42l59-45l-7 91Z" fill="url(#fur)"/>
+  <path d="M167 384q37 27 72 0l-35 52Z" fill="#f9e8cf"/>
+  <path d="M172 356l17 4m35 0l17-4" stroke="#162b2b" stroke-width="5" stroke-linecap="round"/>
+  <path d="M198 383l8 5l8-5" fill="#152526" stroke="#152526" stroke-linejoin="round"/>
+  <path d="M118 450l-24 57m174-55l22 55" stroke="#a95d4b" stroke-width="20" stroke-linecap="round"/>
+  <path d="M269 403q61-53 77-7q8 28-28 51" fill="none" stroke="#b8755a" stroke-width="25" stroke-linecap="round"/>
+  <path d="M29 31h29M29 31v29m342-29h-29m29 0v29M29 619h29m-29 0v-29m342 29h-29m29 0v-29" stroke="#b9edf0" stroke-opacity=".45" stroke-width="2" fill="none"/>
+  <text x="30" y="77" fill="#c9eced" font-family="sans-serif" font-size="11" letter-spacing="3">MOTION / STYLE 10</text>
+  <rect x="65" y="574" width="270" height="35" rx="17" fill="#071820" opacity=".9"/>
+  <text x="200" y="597" text-anchor="middle" fill="#e3f8f7" font-family="sans-serif" font-size="14">仮のイメージ · プレビュー準備中</text>
+</svg>

@@ -12,17 +12,36 @@ it("PostgreSQLエンジンで構造変更・初期データ・権限・RLS・重
     );
     await db.exec(await readFile("supabase/seed.sql", "utf8"));
     await db.exec(
+      await readFile("supabase/migrations/20261113000000_animal_sports_categories.sql", "utf8"),
+    );
+    await db.exec(
       "update public.templates set title='編集済みの見本' where slug='runway-walk'",
     );
     await db.exec(await readFile("supabase/seed.sql", "utf8"));
+    await db.exec("update public.templates set poster_url='/demo/runway-walk.svg' where slug='runway-walk'");
+    await db.exec("update public.templates set poster_url='https://example.com/custom.jpg' where slug='floating-product'");
+    await db.exec(
+      await readFile("supabase/migrations/20261113000001_generated_posters.sql", "utf8"),
+    );
     const { rows } = await db.query<{ count: number; all_drafts: boolean }>(
       "select count(*)::integer as count, bool_and(not is_published) as all_drafts from public.templates",
     );
-    expect(rows[0]).toEqual({ count: 9, all_drafts: true });
+    expect(rows[0]).toEqual({ count: 11, all_drafts: true });
+    const added = await db.query<{ category: string }>(
+      "select category from public.templates where slug in ('animal-adventure', 'sports-moment') order by category",
+    );
+    expect(added.rows.map(({ category }) => category)).toEqual(["animals", "sports"]);
     const edited = await db.query<{ title: string }>(
       "select title from public.templates where slug='runway-walk'",
     );
     expect(edited.rows[0].title).toBe("編集済みの見本");
+    const posters = await db.query<{ slug: string; poster_url: string }>(
+      "select slug, poster_url from public.templates where slug in ('runway-walk', 'floating-product') order by slug",
+    );
+    expect(posters.rows).toEqual([
+      { slug: "floating-product", poster_url: "https://example.com/custom.jpg" },
+      { slug: "runway-walk", poster_url: "/demo/runway-walk.jpg" },
+    ]);
     await db.exec(await readFile("supabase/tests/access.sql", "utf8"));
   } finally {
     await db.close();
