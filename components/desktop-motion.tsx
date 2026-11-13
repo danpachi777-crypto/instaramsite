@@ -1,6 +1,6 @@
 "use client";
 
-import { lazy, Suspense, useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 const AnimalStage = lazy(() =>
@@ -15,7 +15,23 @@ export function DesktopMotion() {
   const [progress, setProgress] = useState(0);
   const [step, setStep] = useState(0);
   const [sceneReady, setSceneReady] = useState(false);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const handleSceneReady = useCallback(() => setSceneReady(true), []);
+
+  useEffect(() => {
+    if (!desktop || !titleRef.current) return;
+    const title = titleRef.current;
+    const text = title.querySelector("span");
+    if (!text) return;
+    const fit = () => {
+      title.style.setProperty("--title-stretch", String(title.clientWidth / Math.max(text.offsetWidth, 1)));
+    };
+    const observer = new ResizeObserver(fit);
+    observer.observe(title);
+    void document.fonts.ready.then(fit);
+    fit();
+    return () => observer.disconnect();
+  }, [desktop]);
 
   useEffect(() => {
     const query = window.matchMedia(desktopMedia);
@@ -114,7 +130,7 @@ export function DesktopMotion() {
       <div className="desktop-motion-track">
         <section className={`desktop-motion${complete ? " is-ready" : ""} step-${step}`} aria-label="MOTION の紹介">
           <Suspense fallback={null}>
-            {desktop && <AnimalStage onReady={handleSceneReady} />}
+            {desktop && <AnimalStage onReady={handleSceneReady} active={complete} />}
           </Suspense>
           <div className="desktop-motion-vignette" aria-hidden="true" />
           <div className="desktop-motion-hud" aria-hidden="true">
@@ -125,7 +141,7 @@ export function DesktopMotion() {
             <span /><span /><span /><span /><span />
           </div>
           <div className="desktop-motion-hero-copy">
-            <h1>次話題の動画はここから。</h1>
+            <h1 ref={titleRef}><span>次話題の動画はここから</span></h1>
             <div className="desktop-motion-subline">
               <span>あなたの次の一本</span><i /><span>AIで広がる表現</span><i /><span>まだ見たことのない世界</span>
             </div>

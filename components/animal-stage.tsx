@@ -14,15 +14,16 @@ type Actor = {
   target: THREE.Vector3;
   delay: number;
   phase: number;
+  angle: number;
 };
 
 const actorSpecs = [
-  { model: "cat", x: -5.4, z: -1.1, height: 1.35, angle: 1.1 },
-  { model: "dog", x: -3.55, z: -0.8, height: 1.75, angle: 0.8 },
-  { model: "capybara", x: -1.1, z: 0.2, height: 1.35, angle: 0.55 },
-  { model: "penguin", x: 1.25, z: -0.2, height: 1.6, angle: -0.4 },
-  { model: "rabbit", x: 3.3, z: -0.7, height: 1.4, angle: -0.8 },
-  { model: "cat", x: 5.5, z: -1.2, height: 1.35, angle: -1.1 },
+  { model: "cat", x: -5.4, z: -1.1, height: 0.74, angle: 1.1 },
+  { model: "dog", x: -3.55, z: -0.8, height: 1.02, angle: 0.8 },
+  { model: "capybara", x: -1.1, z: 0.2, height: 0.78, angle: 0.55 },
+  { model: "penguin", x: 1.25, z: -0.2, height: 0.93, angle: -0.4 },
+  { model: "rabbit", x: 3.3, z: -0.7, height: 0.81, angle: -0.8 },
+  { model: "cat", x: 5.5, z: -1.2, height: 0.74, angle: -1.1 },
 ] as const;
 
 function smoothstep(value: number) {
@@ -30,8 +31,10 @@ function smoothstep(value: number) {
   return x * x * (3 - 2 * x);
 }
 
-export function AnimalStage({ onReady }: { onReady?: () => void }) {
+export function AnimalStage({ onReady, active }: { onReady?: () => void; active: boolean }) {
   const mountRef = useRef<HTMLDivElement>(null);
+  const activeRef = useRef(active);
+  useEffect(() => { activeRef.current = active; }, [active]);
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -43,7 +46,7 @@ export function AnimalStage({ onReady }: { onReady?: () => void }) {
       onReady?.();
       return;
     }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -74,7 +77,7 @@ export function AnimalStage({ onReady }: { onReady?: () => void }) {
 
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(90, 90),
-      new THREE.MeshStandardMaterial({ color: "#11170f", roughness: 0.32, metalness: 0.36 }),
+      new THREE.MeshStandardMaterial({ color: "#11170f", emissive: "#182111", emissiveIntensity: 0.35, roughness: 0.32, metalness: 0.36 }),
     );
     floor.rotation.x = -Math.PI / 2;
     floor.position.y = -0.22;
@@ -89,28 +92,25 @@ export function AnimalStage({ onReady }: { onReady?: () => void }) {
     const ring = new THREE.Group();
     ring.position.set(0, 4.4, -3.2);
     scene.add(ring);
-    const ringMaterials = [
-      new THREE.MeshStandardMaterial({ color: "#ecff9b", emissive: "#c6f46a", emissiveIntensity: 1.35, metalness: 0.25 }),
-      new THREE.MeshStandardMaterial({ color: "#9dbd58", emissive: "#9fca52", emissiveIntensity: 0.96, metalness: 0.25 }),
-      new THREE.MeshStandardMaterial({ color: "#526c30", emissive: "#67853a", emissiveIntensity: 0.55, metalness: 0.25 }),
-    ];
-    for (let index = 0; index < 112; index++) {
-      if (index % 17 === 4 || index % 19 === 13) continue;
-      const angle = (index / 112) * Math.PI * 2 + Math.sin(index * 3.1) * 0.1;
-      const radius = 2.12 + Math.sin(index * 1.9) * 0.47 + (index % 11 === 0 ? 0.4 : 0);
-      const size = 0.11 + (index % 6) * 0.055;
-      const tile = new THREE.Mesh(
-        new THREE.BoxGeometry(size, size * (index % 4 === 0 ? 1.75 : 1), 0.07),
-        ringMaterials[index % 3],
-      );
-      tile.position.set(Math.cos(angle) * radius, Math.sin(angle) * radius, Math.sin(index * 2.7) * 0.23);
-      tile.rotation.z = angle + Math.sin(index * 4.1) * 0.55;
-      ring.add(tile);
-    }
-    ring.add(new THREE.Mesh(
-      new THREE.TorusGeometry(1.7, 0.012, 5, 128),
-      new THREE.MeshBasicMaterial({ color: "#b9e566", transparent: true, opacity: 0.22 }),
-    ));
+    const phoneCount = 54;
+    const frameMaterial = new THREE.MeshStandardMaterial({ color: "#788563", metalness: 0.8, roughness: 0.25 });
+    const screenMaterial = new THREE.MeshStandardMaterial({
+      color: "#a7cb64", emissive: "#8fb94b", emissiveIntensity: 0.75, roughness: 0.25,
+    });
+    const glassMaterial = new THREE.MeshStandardMaterial({ color: "#10180e", roughness: 0.2 });
+    // Three instanced layers form every handset: metal frame, inset screen and camera bar.
+    const phones = new THREE.InstancedMesh(new THREE.BoxGeometry(0.24, 0.49, 0.035), frameMaterial, phoneCount);
+    const screens = new THREE.InstancedMesh(new THREE.BoxGeometry(0.208, 0.44, 0.008), screenMaterial, phoneCount);
+    const cameras = new THREE.InstancedMesh(new THREE.BoxGeometry(0.075, 0.018, 0.009), glassMaterial, phoneCount);
+    [phones, screens, cameras].forEach((mesh) => {
+      mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      mesh.frustumCulled = false;
+      ring.add(mesh);
+    });
+    const phonePose = new THREE.Object3D();
+    const screenOffset = new THREE.Matrix4().makeTranslation(0, 0, 0.022);
+    const cameraOffset = new THREE.Matrix4().makeTranslation(0, 0.192, 0.028);
+    const partMatrix = new THREE.Matrix4();
 
     const starsGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(260 * 3);
@@ -149,6 +149,7 @@ export function AnimalStage({ onReady }: { onReady?: () => void }) {
 
     const actors: Actor[] = [];
     const loader = new GLTFLoader();
+    const silhouette = new THREE.MeshStandardMaterial({ color: "#010201", roughness: 1, metalness: 0 });
     let disposed = false;
     Promise.all(actorSpecs.map(async (spec, index) => {
       try {
@@ -163,6 +164,9 @@ export function AnimalStage({ onReady }: { onReady?: () => void }) {
         figure.position.y = -bounds.min.y * scale;
         figure.traverse((object) => {
           if (object instanceof THREE.Mesh) {
+            const originals = Array.isArray(object.material) ? object.material : [object.material];
+            originals.forEach((item: THREE.Material) => item.dispose());
+            object.material = silhouette;
             object.castShadow = true;
             object.receiveShadow = true;
           }
@@ -178,6 +182,7 @@ export function AnimalStage({ onReady }: { onReady?: () => void }) {
           target: new THREE.Vector3(spec.x, -0.21, spec.z),
           delay: index * 0.11,
           phase: index * 1.27,
+          angle: spec.angle,
         });
       } catch (error) {
         console.error("Animal model could not be loaded", spec.model, error);
@@ -185,13 +190,18 @@ export function AnimalStage({ onReady }: { onReady?: () => void }) {
     })).then(() => { if (!disposed) onReady?.(); });
 
     const composer = new EffectComposer(renderer);
+    composer.renderTarget1.samples = 4;
+    composer.renderTarget2.samples = 4;
     composer.addPass(new RenderPass(scene, camera));
     const bloom = new UnrealBloomPass(new THREE.Vector2(mount.clientWidth, mount.clientHeight), 0.62, 0.42, 0.76);
     composer.addPass(bloom);
     composer.addPass(new OutputPass());
-    const started = performance.now();
+    let started: number | null = null;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let previous = performance.now();
     let frame = 0;
     let scroll = 0;
+    let targetScroll = 0;
     let visible = true;
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
@@ -210,28 +220,53 @@ export function AnimalStage({ onReady }: { onReady?: () => void }) {
       const track = mount.closest(".desktop-motion-track");
       if (!track) return;
       const rect = track.getBoundingClientRect();
-      scroll = THREE.MathUtils.clamp(-rect.top / Math.max(1, rect.height - window.innerHeight), 0, 1);
+      targetScroll = THREE.MathUtils.clamp(-rect.top / Math.max(1, rect.height - window.innerHeight), 0, 1);
     };
     window.addEventListener("resize", resize);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     const render = () => {
       frame = window.requestAnimationFrame(render);
-      const elapsed = (performance.now() - started) / 1000;
+      const now = performance.now();
+      const delta = Math.min((now - previous) / 1000, 0.05);
+      previous = now;
+      if (activeRef.current && started === null) started = now;
+      const elapsed = reducedMotion ? 10 : started === null ? 0 : (now - started) / 1000;
+      scroll = THREE.MathUtils.damp(scroll, targetScroll, 5.5, delta);
       const entered = smoothstep((elapsed - 0.5) / 2.2);
-      ring.rotation.z = elapsed * 0.055 + scroll * 0.5;
-      ring.rotation.y = Math.sin(elapsed * 0.21) * 0.17 + scroll * 0.32;
-      ring.scale.setScalar(0.6 + entered * 0.4 + Math.sin(elapsed * 0.8) * 0.012);
+      const gather = smoothstep((elapsed - 3.5) / 2.3);
+      const vanish = smoothstep((elapsed - 5.4) / 0.7);
+      ring.visible = vanish < 1;
+      ring.rotation.z = elapsed * 0.065;
+      ring.rotation.y = Math.sin(elapsed * 0.21) * 0.12;
+      ring.scale.setScalar(0.8 + entered * 0.2);
       ring.position.z = -3.2 - scroll * 4.4;
-      backlight.intensity = 13 + Math.sin(elapsed * 1.4) * 2.5;
-      ringMaterials[0].emissiveIntensity = 1.22 + Math.sin(elapsed * 1.3) * 0.16;
+      for (let i = 0; i < phoneCount; i++) {
+        const phase = i * 2.399963;
+        const angle = i / phoneCount * Math.PI * 2 + elapsed * (0.06 + (i % 3) * 0.008);
+        const radius = (2.05 + Math.sin(phase) * 0.4) * (1 - gather);
+        phonePose.position.set(
+          Math.cos(angle + gather * 1.8) * radius,
+          Math.sin(angle + gather * 1.8) * radius,
+          Math.sin(phase + elapsed * 0.25) * 0.24 * (1 - gather),
+        );
+        phonePose.rotation.set(Math.sin(phase + elapsed * 0.35) * 0.23 * (1 - gather), Math.cos(phase) * 0.38 * (1 - gather), Math.sin(phase) * 0.45 * (1 - gather));
+        phonePose.scale.setScalar((0.72 + (i % 4) * 0.15) * (1 - gather * 0.85) * (1 - vanish));
+        phonePose.updateMatrix();
+        phones.setMatrixAt(i, phonePose.matrix);
+        screens.setMatrixAt(i, partMatrix.multiplyMatrices(phonePose.matrix, screenOffset));
+        cameras.setMatrixAt(i, partMatrix.multiplyMatrices(phonePose.matrix, cameraOffset));
+      }
+      [phones, screens, cameras].forEach((mesh) => { mesh.instanceMatrix.needsUpdate = true; });
+      screenMaterial.emissiveIntensity = (0.65 + gather * 1.2) * (1 - vanish);
+      backlight.intensity = (11 + gather * 4) * (1 - vanish) + 3;
       stars.rotation.y = elapsed * 0.004;
-      actors.forEach(({ group, target, start, delay, phase }) => {
+      actors.forEach(({ group, target, start, delay, phase, angle }) => {
         const arrival = smoothstep((elapsed - 0.45 - delay) / 1.8);
         group.position.lerpVectors(start, target, arrival);
         group.position.y += Math.sin(elapsed * 1.18 + phase) * 0.014;
         group.position.z -= scroll * (2.4 + phase * 0.18);
-        group.rotation.y += Math.sin(elapsed * 0.45 + phase) * 0.0003;
+        group.rotation.y = angle + Math.sin(elapsed * 0.45 + phase) * 0.035;
       });
       camera.position.x = scroll * 3.3 + Math.sin(elapsed * 0.22) * 0.08;
       camera.position.y = 3.2 + scroll * 1.65;

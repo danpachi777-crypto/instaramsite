@@ -4,6 +4,10 @@ import { Header, Footer, SetupNotice } from "@/components/site";
 import { AttributionCapture } from "@/components/attribution";
 import { configIssue, isDemo, siteUrl } from "@/lib/env";
 import "./globals.css";
+import "@fontsource-variable/noto-sans-jp";
+import "@fontsource/rajdhani/500.css";
+import "@fontsource/rajdhani/600.css";
+import "@fontsource/michroma";
 import "./desktop-motion.css";
 export const dynamic = "force-dynamic";
 export const viewport: Viewport = {
