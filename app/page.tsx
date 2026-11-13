@@ -5,13 +5,15 @@ import { configIssue, isDemo } from "@/lib/env";
 import { TemplateCard, EmptyTemplates } from "@/components/site";
 import { Preview } from "@/components/preview";
 import { WaitlistForm } from "@/components/waitlist-form";
+import { DesktopMotion } from "@/components/desktop-motion";
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 export default async function Home() {
   if (configIssue()) return null;
   const templates = await getPublicTemplates();
   return (
     <main>
-      <section className="hero container">
+      <DesktopMotion />
+      <section className="hero container mobile-home-hero">
         <div className="hero-copy">
           <p className="eyebrow">
             <span className="live-dot" />

@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 const config: NextConfig = {
   poweredByHeader: false,
+  devIndicators: false,
   // Resolve public metadata before streaming so unavailable details return HTTP 404.
   htmlLimitedBots: /.*/,
   async headers() {

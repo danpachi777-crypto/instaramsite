@@ -4,6 +4,7 @@ import { Header, Footer, SetupNotice } from "@/components/site";
 import { AttributionCapture } from "@/components/attribution";
 import { configIssue, isDemo, siteUrl } from "@/lib/env";
 import "./globals.css";
+import "./desktop-motion.css";
 export const dynamic = "force-dynamic";
 export const viewport: Viewport = {
   width: "device-width",
