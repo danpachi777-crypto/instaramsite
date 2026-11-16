@@ -5,12 +5,14 @@ import type { Template } from "@/lib/validation";
 export function Preview({
   template,
   eager = false,
+  legacy = false,
 }: {
   template: Pick<
     Template,
     "title" | "preview_url" | "poster_url" | "aspect_ratio"
   >;
   eager?: boolean;
+  legacy?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
   const [posterFailed, setPosterFailed] = useState(false);
@@ -29,7 +31,7 @@ export function Preview({
           poster={template.poster_url || undefined}
           controlsList="nodownload"
           onError={() => setFailed(true)}
-          aria-label={`${template.title}の無音の作例`}
+          aria-label={`${template.title}の動画作例`}
         >
           <source src={template.preview_url} />
           <track
@@ -59,7 +61,7 @@ export function Preview({
             </div>
           )}
           <span className="preview-label">
-            {failed ? "動画を読み込めませんでした" : "プレビュー準備中"}
+            {failed ? "動画を読み込めませんでした" : legacy ? "プレビュー準備中" : "動画準備中 · イメージ画像"}
           </span>
         </>
       )}

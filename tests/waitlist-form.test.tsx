@@ -20,17 +20,25 @@ afterEach(() => {
 const consentLabel =
   "MOTIONの先行案内とサービス更新情報をメールで受け取ることに同意します。配信はいつでも停止できます。";
 describe("登録フォームの状態とアクセシビリティ", () => {
-  it("同意は未選択で必須。デモは送信できない", () => {
+  it("デモでは登録を促さず、作例への入口だけを表示する", () => {
     const fetch = vi.fn();
     vi.stubGlobal("fetch", fetch);
     render(<WaitlistForm demo />);
-    const checkbox = screen.getByLabelText(consentLabel) as HTMLInputElement;
-    expect(checkbox.checked).toBe(false);
-    expect(checkbox.required).toBe(true);
-    expect(checkbox.matches(":disabled")).toBe(true);
-    expect(
-      (screen.getByRole("button") as HTMLButtonElement).matches(":disabled"),
-    ).toBe(true);
+    expect(screen.queryByRole("checkbox")).toBeNull();
+    expect(screen.queryByRole("button")).toBeNull();
+    expect(screen.getByText(/先行案内は準備中/)).toBeTruthy();
+    expect(screen.getByRole("link", { name: /動画作例を見る/ }).getAttribute("href")).toBe("/templates");
+    expect(fetch).not.toHaveBeenCalled();
+  });
+  it("変更対象外のスマホ表示では従来の無効フォームを維持する", () => {
+    const fetch = vi.fn();
+    vi.stubGlobal("fetch", fetch);
+    render(<WaitlistForm legacy demo />);
+    const consent = screen.getByLabelText(consentLabel) as HTMLInputElement;
+    expect(consent.checked).toBe(false);
+    expect(consent.required).toBe(true);
+    expect(consent.matches(":disabled")).toBe(true);
+    expect(screen.getByRole("button").matches(":disabled")).toBe(true);
     expect(fetch).not.toHaveBeenCalled();
   });
   it("送信中は連打を防ぎ、保存後の日本語受付結果を読み上げる", async () => {

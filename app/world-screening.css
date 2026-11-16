@@ -1,0 +1,31 @@
+@media (min-width: 601px) and (any-pointer: fine), (min-width: 1200px) {
+  /* Keep the existing city, HUD, intro, typography and camera chapters. */
+  .desktop-motion-track { height: 2400svh; }
+  .desktop-motion.step-1 .desktop-motion-story,
+  .desktop-motion.step-3 .desktop-motion-story {
+    left: 0;
+    right: auto;
+  }
+  .desktop-world-message {
+    position: absolute;
+    z-index: 5;
+    left: 1.875rem;
+    bottom: 8.5vh;
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(30px, 3.7vw, 58px);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+    text-shadow: 0 2px 20px #050705;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.8s, transform 0.8s;
+    pointer-events: none;
+  }
+  .desktop-world-message span { display: block; }
+  .desktop-motion[data-chapter="4"] .desktop-world-message {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,10 @@
+Inter by The Inter Project Authors, licensed under the SIL Open Font License 1.1.
+License is included as Inter-LICENSE.txt.
+
+Official project: https://rsms.me/inter/
+Regular variable webfont: https://rsms.me/inter/font-files/InterVariable.woff2?v=4.1
+Italic variable webfont: https://rsms.me/inter/font-files/InterVariable-Italic.woff2?v=4.1
+License source: https://raw.githubusercontent.com/rsms/inter/master/LICENSE.txt
+
+Inter is the free alternative selected for MOTION. It is not Mobbin's M Saans.
+Japanese characters use the existing Noto Sans JP Variable font package.

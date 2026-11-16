@@ -6,6 +6,8 @@ import { configIssue, isDemo } from "@/lib/env";
 import { categories } from "@/lib/validation";
 import { Preview } from "@/components/preview";
 import { WaitlistForm } from "@/components/waitlist-form";
+import { ResponsiveView } from "@/components/responsive-view";
+import { MobileDetail } from "@/components/preserved-mobile-detail";
 type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (configIssue()) return { title: "準備中" };
@@ -22,13 +24,15 @@ export default async function TemplateDetail({ params }: Props) {
   if (configIssue()) return null;
   const template = await getPublicTemplate((await params).slug);
   if (!template) notFound();
-  return (
-    <main className="container section">
+  const demo = isDemo();
+  return <ResponsiveView mobile={<MobileDetail template={template} demo={demo} />} desktop={(
+    <main className="container section template-detail">
       <Link className="back-link" href="/templates">
-        ← テンプレート一覧へ
+        ← 動画作例一覧へ
       </Link>
       <div className="detail-grid">
         <div className="detail-preview">
+          <p className="media-title">{template.title}の{template.preview_url ? "動画作例" : "イメージ画像 · 動画準備中"}</p>
           <Preview template={template} eager />
         </div>
         <div className="detail-copy">
@@ -43,10 +47,7 @@ export default async function TemplateDetail({ params }: Props) {
               {template.description} 気になる世界観を、次のリールのアイデアに。
             </p>
           </div>
-          <a className="button primary" href="#template-waitlist">
-            このテンプレートの先行案内に登録する{" "}
-            <span aria-hidden="true">↗</span>
-          </a>
+          {demo ? <Link className="button primary" href="/templates">ほかの動画作例を見る ↗</Link> : <a className="button primary" href="#template-waitlist">このスタイルの先行案内に登録する <span aria-hidden="true">↗</span></a>}
           <p className="micro">
             作例を準備しているテンプレートには仮のイメージを表示しています。動画生成と決済は未提供です。
           </p>
@@ -54,20 +55,18 @@ export default async function TemplateDetail({ params }: Props) {
       </div>
       <section className="signup-section detail-signup" id="template-waitlist">
         <div>
-          <span className="eyebrow">このスタイルが気になったら</span>
+          <span className="eyebrow">{demo ? "公開状況" : "このスタイルが気になったら"}</span>
           <h2>
-            「{template.title}」の
-            <br />
-            先行案内を受け取る。
+            {demo ? "先行案内は準備中" : `「${template.title}」の先行案内を受け取る。`}
           </h2>
-          <p>選んだテンプレートと一緒にお申し込みを受け付けます。</p>
+          <p>{demo ? "デモ表示中のため、メール登録は利用できません。" : "選んだスタイルと一緒にお申し込みを受け付けます。"}</p>
         </div>
         <WaitlistForm
-          demo={isDemo()}
+          demo={demo}
           source="template"
           templateId={template.id}
         />
       </section>
     </main>
-  );
+  )} />;
 }

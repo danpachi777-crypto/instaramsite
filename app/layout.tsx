@@ -5,15 +5,16 @@ import { AttributionCapture } from "@/components/attribution";
 import { configIssue, isDemo, siteUrl } from "@/lib/env";
 import "./globals.css";
 import "@fontsource-variable/noto-sans-jp";
-import "@fontsource/rajdhani/500.css";
-import "@fontsource/rajdhani/600.css";
-import "@fontsource/michroma";
+import "./fonts.css";
 import "./desktop-motion.css";
+import "./world-screening.css";
+import "./phone-loading.css";
+import "./ui-improvements.css";
 export const dynamic = "force-dynamic";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#10120f",
+  themeColor: "#0D100C",
 };
 export async function generateMetadata(): Promise<Metadata> {
   let base: URL | undefined;
@@ -47,6 +48,9 @@ export default function RootLayout({
   const issue = configIssue();
   return (
     <html lang="ja" data-scroll-behavior="smooth">
+      <head>
+        <link rel="preload" href="/motion/fonts/InterVariable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      </head>
       <body>
         <a href="#main" className="skip-link">
           本文へ移動

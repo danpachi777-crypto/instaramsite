@@ -1,0 +1,259 @@
+﻿{
+    "reference":  "https://www.qu.ai/",
+    "audited":  "2026-11-13",
+    "note":  "Provenance record, not a grant of rights. No licence is asserted for assets distributed by qu.ai. The application JavaScript was inspected privately and is not included here.",
+    "derived":  [
+                    {
+                        "file":  "layout.json",
+                        "source":  "https://www.qu.ai/runtime/webgl/objectdata.unseen",
+                        "transformation":  "Scene placements and camera paths selected for the independent implementation."
+                    },
+                    {
+                        "file":  "phone-layout.json",
+                        "source":  "https://www.qu.ai/runtime/webgl/models/logo.glb",
+                        "transformation":  "Connected-component centres, normals and sizes; original logo mesh is not included."
+                    }
+                ],
+    "assets":  [
+                   {
+                       "file":  "images/base-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/base-lightmap.ktx2",
+                       "sha256":  "5de964cb1e88ebf596c3e2c4c7ae022703688ca3a16eb39c1c16b10cba9ec15e"
+                   },
+                   {
+                       "file":  "images/bridges-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/bridges-lightmap.ktx2",
+                       "sha256":  "9865e0059f1d495463105cb9083daf1e2ba55294c1ba12b95df0a0106711833e"
+                   },
+                   {
+                       "file":  "images/bridges-rim.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/bridges-rim.ktx2",
+                       "sha256":  "970b9a76b2ca0a950b4107cd23587430aca07b6b3b43a83960faa9bd7fae02f2"
+                   },
+                   {
+                       "file":  "images/car0.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/car0.ktx2",
+                       "sha256":  "5abbc01c8c704d5b3beeb1559bf486e763fd27c4746b332e2665e142a1e902bc"
+                   },
+                   {
+                       "file":  "images/car1.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/car1.ktx2",
+                       "sha256":  "8d6115318426bcc34edc0324ea5e24c6579770a614c2abd63640e8698e306806"
+                   },
+                   {
+                       "file":  "images/city0-b0-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city0-b0-lightmap.ktx2",
+                       "sha256":  "d87e68276e7ba6b825d8b48af4150e0b81c658fbf2a87f5804b13d72e6793555"
+                   },
+                   {
+                       "file":  "images/city0-b1-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city0-b1-lightmap.ktx2",
+                       "sha256":  "d87e68276e7ba6b825d8b48af4150e0b81c658fbf2a87f5804b13d72e6793555"
+                   },
+                   {
+                       "file":  "images/city0-b2-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city0-b2-lightmap.ktx2",
+                       "sha256":  "05655bcd3f3e730d3ff86d51a410ee26d00b5897e5417693f0599b16225eff2a"
+                   },
+                   {
+                       "file":  "images/city0-b3-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city0-b3-lightmap.ktx2",
+                       "sha256":  "094bada02402f688164568533ec2bb15892c3a85bec6084050c61b632f2b4441"
+                   },
+                   {
+                       "file":  "images/city1-b0-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city1-b0-lightmap.ktx2",
+                       "sha256":  "896992cf58332213f50cb4647e7f52c4453ee577d8dc64648365fa5249597745"
+                   },
+                   {
+                       "file":  "images/city1-b1-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city1-b1-lightmap.ktx2",
+                       "sha256":  "42e0fe7fbc281b56ca78896817caf9b0f0ad96b61cadf5533c5a0bf530c30f54"
+                   },
+                   {
+                       "file":  "images/city1-b2-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city1-b2-lightmap.ktx2",
+                       "sha256":  "42e0fe7fbc281b56ca78896817caf9b0f0ad96b61cadf5533c5a0bf530c30f54"
+                   },
+                   {
+                       "file":  "images/city1-b3-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city1-b3-lightmap.ktx2",
+                       "sha256":  "aed37ffe43bbb1cdb591141524a104f0e1ca7d962269dec10e6202e33ea70740"
+                   },
+                   {
+                       "file":  "images/city2-b0-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city2-b0-lightmap.ktx2",
+                       "sha256":  "170685f33b86bbc84483ba39b2724399fef12adb43e7146a250dcc8cf2b9b5e4"
+                   },
+                   {
+                       "file":  "images/city2-b1-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city2-b1-lightmap.ktx2",
+                       "sha256":  "71af759e0846318d43b854a1c43749372d663a46664627f057f8ad8b09591d92"
+                   },
+                   {
+                       "file":  "images/city2-b2-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city2-b2-lightmap.ktx2",
+                       "sha256":  "71af759e0846318d43b854a1c43749372d663a46664627f057f8ad8b09591d92"
+                   },
+                   {
+                       "file":  "images/city2-b3-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/city2-b3-lightmap.ktx2",
+                       "sha256":  "4514338ca807c62081e1c2bc934825308add612ba08360f780df4c909c8ede07"
+                   },
+                   {
+                       "file":  "images/faces_2.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/faces_2.ktx2",
+                       "sha256":  "a12ad6354f72d08f1a3df28ccc784e5a2bb56b36fa3c068ac007c1d740c79a95"
+                   },
+                   {
+                       "file":  "images/faces_3.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/faces_3.ktx2",
+                       "sha256":  "99e5c6496bab86131e61a09f7c333e7c2b289802185662830090f19162bb8181"
+                   },
+                   {
+                       "file":  "images/floor-lightmap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/floor-lightmap.ktx2",
+                       "sha256":  "d85a07765e69b0ca99a3e21aacef04639cd0b0b46d25629743986b5f8fbd9807"
+                   },
+                   {
+                       "file":  "images/hex.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/hex.ktx2",
+                       "sha256":  "f03a7d4308693f82a3cdb3d8e066da3fbae8822c6b090635e878c802e08ff09d"
+                   },
+                   {
+                       "file":  "images/matcap.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/matcap.ktx2",
+                       "sha256":  "d2346426a8434f71e9a62db9830b7165ab0e6f02a743846da9a94828cc0f8741"
+                   },
+                   {
+                       "file":  "images/rails-city0.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/rails-city0.ktx2",
+                       "sha256":  "842e83aa03a1648eb921e2e589fba815971895179a6b02644d962e9506ecf744"
+                   },
+                   {
+                       "file":  "images/rails-city1.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/rails-city1.ktx2",
+                       "sha256":  "ff5da1d7138e311545f0312ef09eada52c591c81941046d346e895e4ae089564"
+                   },
+                   {
+                       "file":  "images/rails-city2.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/rails-city2.ktx2",
+                       "sha256":  "4f9ba2586e8dfba558f58e35a83cc6c532daf86869f9f90945c20fb8261e5353"
+                   },
+                   {
+                       "file":  "images/walls-2-Normal.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/walls-2-Normal.ktx2",
+                       "sha256":  "c6920fb268589716472bd7c4f3d7d57b4463a59f2fe8cbe7a006d535e774f57f"
+                   },
+                   {
+                       "file":  "images/walls-2-Roughness.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/walls-2-Roughness.ktx2",
+                       "sha256":  "57ad0e9334eeaa4dbc0a92076645d016415cd8acdea13bebbae08a1be59a0a84"
+                   },
+                   {
+                       "file":  "images/walls-2.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/walls-2.ktx2",
+                       "sha256":  "c9edb3e6f99830e6d6a92d1ffc9450e28b1e1b06db33e14e79a6f2e23ad4d898"
+                   },
+                   {
+                       "file":  "images/signs/sign_0.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/signs/sign_0.ktx2",
+                       "sha256":  "07a3dd053035cd59e9e9e31555ac42486143d17ebd2241a4eca521474eb9694b"
+                   },
+                   {
+                       "file":  "images/signs/sign_1.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/signs/sign_1.ktx2",
+                       "sha256":  "1a4d7ced8dd812692e38fe5a41dbdc3a92df400051c5026759b025b40171a070"
+                   },
+                   {
+                       "file":  "images/signs/sign_10.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/signs/sign_10.ktx2",
+                       "sha256":  "81075f7365f1c12514360b1c07cbec9088f13ac9931ae25917c1205d4aaea087"
+                   },
+                   {
+                       "file":  "images/signs/sign_2.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/signs/sign_2.ktx2",
+                       "sha256":  "6938268b69568b2b3fd9b9f3fd11c7cd3cbb528833d78e61fcf39939588a5ca2"
+                   },
+                   {
+                       "file":  "images/signs/sign_3.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/signs/sign_3.ktx2",
+                       "sha256":  "5c1270ddd1f95f0dd8c451b723accf183a03751119e13310a55aa1d185dcff00"
+                   },
+                   {
+                       "file":  "images/signs/sign_4.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/signs/sign_4.ktx2",
+                       "sha256":  "b2d89ea2e0578acc3e1462d3cf69c463b8b3dfb3badbc0525233d6045319672a"
+                   },
+                   {
+                       "file":  "images/signs/sign_5.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/signs/sign_5.ktx2",
+                       "sha256":  "35f22395eff70df7025f0c795714c258060a894a08c682f5edd90dda9eadcc7f"
+                   },
+                   {
+                       "file":  "images/signs/sign_6.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/signs/sign_6.ktx2",
+                       "sha256":  "f94d080c360bff7a175e85cfcd66a7521e06a30e6c0cc9713a7592544f1f9315"
+                   },
+                   {
+                       "file":  "images/signs/sign_7.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/signs/sign_7.ktx2",
+                       "sha256":  "40d84d693682648291fb4191f993e00b387bbdd0a44c1d8779d1af1e04bfabbc"
+                   },
+                   {
+                       "file":  "images/signs/sign_8.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/signs/sign_8.ktx2",
+                       "sha256":  "8ab20884a0a84580d52970d812905d46d9bf474fdc23c5e7b192be654140fbdd"
+                   },
+                   {
+                       "file":  "images/signs/sign_9.ktx2",
+                       "source":  "https://www.qu.ai/runtime/webgl/images/signs/sign_9.ktx2",
+                       "sha256":  "6dd35f8ca8bb71664cf643b3183c35e4b2a898ad120a5eaeedf3eab06b1d4d62"
+                   },
+                   {
+                       "file":  "models/base-top.glb",
+                       "source":  "https://www.qu.ai/runtime/webgl/models/base-top.glb",
+                       "sha256":  "a939dfe292d71f2a7ba09e3cf74ad83c4afceaf1d0cafa3053f770c72560e01b"
+                   },
+                   {
+                       "file":  "models/bridges.glb",
+                       "source":  "https://www.qu.ai/runtime/webgl/models/bridges.glb",
+                       "sha256":  "b8f1a8dee44d299ffae254c786b595198742e98a2b8950e5bbc54132fd1679e6"
+                   },
+                   {
+                       "file":  "models/car0.glb",
+                       "source":  "https://www.qu.ai/runtime/webgl/models/car0.glb",
+                       "sha256":  "4817f33600bdf02289ada523c838d730f5cbf973ed0d0ee0e35fd13b1702e8b3"
+                   },
+                   {
+                       "file":  "models/car1.glb",
+                       "source":  "https://www.qu.ai/runtime/webgl/models/car1.glb",
+                       "sha256":  "7a7454b0b3a9e0c8cbe3a0f72e1282468f69dfa3f55e1c6ebcfa659e8e5ab338"
+                   },
+                   {
+                       "file":  "models/city0.glb",
+                       "source":  "https://www.qu.ai/runtime/webgl/models/city0.glb",
+                       "sha256":  "1434d501b4725fd7a026fdf49c1a1dddac02138203940da48a04543814bf4a4d"
+                   },
+                   {
+                       "file":  "models/city1.glb",
+                       "source":  "https://www.qu.ai/runtime/webgl/models/city1.glb",
+                       "sha256":  "fd8bf36021f0157f5d2973e4f1fcf6f91257ff4b3f248ca2ecdf31faaa7034e0"
+                   },
+                   {
+                       "file":  "models/city2.glb",
+                       "source":  "https://www.qu.ai/runtime/webgl/models/city2.glb",
+                       "sha256":  "13f66b9ce8ac57d3551cb39aef4636578e48e248151e6656a7e5ff26a86721f9"
+                   },
+                   {
+                       "file":  "models/floor.glb",
+                       "source":  "https://www.qu.ai/runtime/webgl/models/floor.glb",
+                       "sha256":  "e009d586d7abb20d4d49ec81130b5fcb03693f9e7cf3315d41074b2df584afbe"
+                   },
+                   {
+                       "file":  "models/sign.glb",
+                       "source":  "https://www.qu.ai/runtime/webgl/models/sign.glb",
+                       "sha256":  "665b969161681c08d3f5c67df26273468bb3fa6c45a0c026d03980c78c4f7ac5"
+                   }
+               ]
+}

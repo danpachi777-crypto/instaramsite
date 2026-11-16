@@ -1,0 +1,10 @@
+Earth land silhouettes: Natural Earth, 1:110m land, public domain.
+https://www.naturalearthdata.com/about/terms-of-use/
+Source geometry:
+https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_land.geojson
+earth-points.json is an evenly sampled land-only derivative of that geometry.
+
+Cinema screens, handset models, globe network paths and animation:
+New projection surfaces, handsets and globe paths are procedural geometry for MOTION.
+The pre-existing city/background assets remain in use, with their original SOURCES files.
+The opening handset circle retains the existing phone-layout.json as requested.

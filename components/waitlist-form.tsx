@@ -8,10 +8,12 @@ export function WaitlistForm({
   demo,
   templateId,
   source = "footer",
+  legacy = false,
 }: {
   demo: boolean;
   templateId?: string;
   source?: "hero" | "footer" | "template";
+  legacy?: boolean;
 }) {
   const id = useId();
   const lock = useRef(false);
@@ -51,9 +53,9 @@ export function WaitlistForm({
   return (
     <div className="signup-form">
       {demo ? (
-        <p className="notice">デモ表示中：メール登録は利用できません</p>
+        legacy ? <p className="notice">デモ表示中：メール登録は利用できません</p> : <div className="demo-registration-notice"><p className="notice">先行案内は準備中です。デモ表示中のため、メール登録は利用できません。</p><Link className="button primary" href="/templates">動画作例を見る ↗</Link></div>
       ) : null}
-      {status !== "success" && (
+      {(!demo || legacy) && status !== "success" && (
         <form onSubmit={submit} aria-busy={status === "sending"}>
           <fieldset disabled={demo || status === "sending"}>
             <label htmlFor={`${id}-email`}>

@@ -8,7 +8,9 @@
   --accent: #d5f86c;
   --error: #ffb9a4;
   --font-sans:
-    Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+    "InterVariable", "Noto Sans JP Variable", sans-serif;
+  --motion-display: var(--font-sans);
+  --motion-mono: var(--font-sans);
   color-scheme: dark;
 }
 * {
@@ -23,6 +25,8 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  font-kerning: normal;
   font-size: 15px;
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
@@ -370,10 +374,10 @@ p {
   color: var(--muted);
   font-size: 13px;
 }
-.manifesto .container > span:last-child {
+.manifesto .container > span:nth-of-type(2) {
   color: var(--accent);
 }
-.manifesto .container > span:last-child > span {
+.manifesto .container > span:nth-of-type(2) > span {
   margin-left: 45px;
 }
 .section-heading {
@@ -1182,7 +1186,7 @@ input[type="checkbox"] {
   .manifesto .container > span {
     display: block;
   }
-  .manifesto .container > span:last-child {
+  .manifesto .container > span:nth-of-type(2) {
     margin-top: 6px;
   }
   .section-heading {

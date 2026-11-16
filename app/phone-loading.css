@@ -1,0 +1,86 @@
+@media (min-width: 601px) and (any-pointer: fine), (min-width: 1200px) {
+  .desktop-intro.phone-loading-intro {
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 50%, #0a0e08, #030503 65%);
+    transition: opacity 0.85s ease, visibility 0.85s ease;
+  }
+  .desktop-intro.phone-loading-intro::after { display: none; }
+  body:has(.phone-loading-intro:not(.is-complete)) .site-header {
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .phone-loading-art {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100vw, 100vh);
+    height: auto;
+    aspect-ratio: 1280 / 800;
+    overflow: visible;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    opacity: 1;
+    transition: opacity 0.8s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .phone-loading-outline {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    opacity: 0;
+    animation: phone-outline-appear 1.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--stroke-delay);
+  }
+  .phone-loading-reflection {
+    transform: translateX(-70%);
+    opacity: 0;
+    transform-box: fill-box;
+  }
+  .phone-loading-intro.is-complete .phone-loading-art {
+    transform: translate(-50%, -50%) scale(1.06);
+    opacity: 0;
+  }
+  .phone-loading-intro.is-complete .phone-loading-reflection {
+    animation: phone-glass-reflection 0.8s ease-out both;
+  }
+  .phone-loading-wordmark {
+    position: absolute;
+    left: 50%;
+    bottom: 42px;
+    margin: 0;
+    transform: translateX(-50%);
+    color: #9ba88b;
+    font: 400 10px/1.5 var(--motion-display, sans-serif);
+    letter-spacing: 0.32em;
+  }
+  .phone-loading-intro .phone-loading-skip {
+    position: absolute;
+    right: 30px;
+    bottom: 37px;
+    padding: 7px 0;
+    border: 0;
+    background: transparent;
+    color: #7e8b74;
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .phone-loading-intro.is-complete .phone-loading-skip { visibility: hidden; }
+  @keyframes phone-outline-appear {
+    to { stroke-dashoffset: 0; opacity: var(--stroke-opacity); }
+  }
+  @keyframes phone-glass-reflection {
+    0% { transform: translateX(-40%); opacity: 0; }
+    20% { opacity: 0.7; }
+    100% { transform: translateX(40%); opacity: 0; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-loading-intro,
+  .phone-loading-intro .phone-loading-art { transition: none !important; }
+  .phone-loading-intro .phone-loading-outline {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: var(--stroke-opacity);
+  }
+  .phone-loading-intro .phone-loading-reflection { display: none; }
+}

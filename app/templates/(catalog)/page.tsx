@@ -4,8 +4,10 @@ import { categories, categorySchema } from "@/lib/validation";
 import { getPublicTemplates } from "@/lib/templates";
 import { configIssue } from "@/lib/env";
 import { TemplateCard, EmptyTemplates } from "@/components/site";
+import { ResponsiveView } from "@/components/responsive-view";
+import { MobileCatalog } from "@/components/preserved-mobile-catalog";
 export const metadata: Metadata = {
-  title: "テンプレート",
+  title: "動画作例",
   alternates: { canonical: "/templates" },
 };
 export default async function Templates({
@@ -22,16 +24,14 @@ export default async function Templates({
       ? templates.filter((t) => t.category === parsed.data)
       : []
     : templates;
-  return (
+  return <ResponsiveView mobile={<MobileCatalog templates={templates} selected={selected} />} desktop={(
     <main className="container section catalog">
       <div className="catalog-heading">
-        <span className="eyebrow">テンプレート</span>
+        <span className="eyebrow">動画作例</span>
         <h1>
-          あなたの「つくりたい」は、
-          <br />
-          どんなスタイル？
+          次のリールに、どんなスタイル？
         </h1>
-        <p>ひらめきに出会う、小さなスタイルライブラリー。</p>
+        <p>カテゴリから、リール向けのAI動画スタイルを探せます。</p>
       </div>
       <nav className="filters" aria-label="カテゴリーで絞り込む">
         <Link href="/templates" aria-current={!selected ? "page" : undefined}>
@@ -48,7 +48,7 @@ export default async function Templates({
         ))}
       </nav>
       <p className="result-count" role="status">
-        {filtered.length}件のテンプレート
+        {filtered.length}件の作例
         {parsed.success ? ` · ${categories[parsed.data]}` : ""}
       </p>
       {filtered.length ? (
@@ -69,5 +69,5 @@ export default async function Templates({
         <EmptyTemplates />
       )}
     </main>
-  );
+  )} />;
 }

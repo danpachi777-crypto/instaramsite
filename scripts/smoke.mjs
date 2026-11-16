@@ -17,7 +17,7 @@ await check(
   200,
   "該当するテンプレートはありません",
 );
-await check("/templates/runway-walk", 200, "プレビュー準備中");
+await check("/templates/runway-walk", 200, "動画準備中");
 await check("/templates/does-not-exist", 404, "ページが見つかりません");
 await check("/privacy", 200, "未設定");
 await check("/terms", 200, "下書き");
