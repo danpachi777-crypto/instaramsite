@@ -9,7 +9,7 @@ async function check(path, status, text) {
   if (text) assert.ok(html.includes(text), `${path}: content`);
   console.log(`成功 ${status} ${path}`);
 }
-await check("/", 200, "どんな動画を作りたい？");
+await check("/", 200, "MOTION / CREATIVE LIBRARY");
 await check("/templates", 200, "ランウェイウォーク");
 await check("/templates?category=effects", 200, "不思議な物体の回転");
 await check("/templates?category=animals", 200, "動物たちの小さな冒険");

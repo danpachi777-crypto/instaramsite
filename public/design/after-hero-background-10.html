@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MOTION｜冒頭以外の背景デザイン 10案</title>
+  <style>
+    :root{color-scheme:dark;font-family:Arial,"Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif;background:#050505;color:#f7f8fa}
+    *{box-sizing:border-box}body{margin:0}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #9de8f1;outline-offset:3px}
+    .shell{width:min(1500px,calc(100% - 36px));margin:auto;padding:30px 0 80px}
+    .intro{margin-bottom:24px}.eyebrow{color:#9de8f1;font-size:11px;font-weight:800;letter-spacing:.17em}
+    h1{margin:5px 0;font-size:clamp(25px,3vw,40px);line-height:1.3}.intro p{margin:0;color:#aaa;font-size:13px;line-height:1.7}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .option{min-width:0;border:1px solid #333;border-radius:14px;overflow:hidden;background:#101010}
+    .option-head{display:flex;align-items:center;gap:11px;padding:14px 17px 8px}.number{color:#9de8f1;font-size:12px;font-weight:800;letter-spacing:.15em}
+    h2{margin:0;font-size:17px}.description{margin:0 17px 13px;color:#aaa;font-size:12px;line-height:1.5}
+    .expand{margin-left:auto;padding:5px 10px;border:1px solid #555;border-radius:30px;background:#1b1b1b;color:#ddd;font-size:11px}.expand:hover{border-color:#9de8f1;color:#fff}
+    .mock{position:relative;isolation:isolate;min-height:420px;overflow:hidden;padding:30px 25px 28px;border-top:1px solid #333;background-color:#080808}
+    .mock::before,.mock::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none}
+    .mock-kicker{display:block;color:#a9e7ee;font-size:10px;font-weight:800;letter-spacing:.17em}.mock h3{margin:7px 0 5px;font-size:clamp(23px,2.3vw,33px);line-height:1.25}.mock-lead{margin:0 0 19px;color:#c0c5cb;font-size:12px}
+    .promo{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;padding:14px 18px;border:1px solid #ffffff25;border-radius:9px;background:#ffffff0b;backdrop-filter:blur(5px)}
+    .promo strong{font-size:14px}.promo span{color:#bfc5cb;font-size:11px}.promo i{color:#a9e7ee;font-size:20px;font-style:normal}
+    .previews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.preview{min-width:0;overflow:hidden;border:1px solid #ffffff20;border-radius:8px;background:#181818}
+    .preview img{display:block;width:100%;height:112px;object-fit:cover}.preview span{display:block;padding:5px 7px;overflow:hidden;color:#eef4f6;font-size:10px;font-weight:700;white-space:nowrap;text-overflow:ellipsis}
+    .style-1{background:#050505}.style-1 .promo,.style-1 .preview{border-color:#2c2c2c;background:#0d0d0d}
+    .style-2{background:linear-gradient(155deg,#1b1d20,#0d0e10 45%,#17191c)}.style-2 .promo,.style-2 .preview{background:#ffffff10;box-shadow:0 10px 30px #0005}
+    .style-3{background:radial-gradient(ellipse 48% 42% at 25% 0%,#6b748536,transparent 100%),radial-gradient(ellipse 45% 42% at 86% 5%,#67738522,transparent 100%),#07090b}
+    .style-4{background:radial-gradient(circle at 7% 15%,#05809b56,transparent 36%),radial-gradient(circle at 95% 88%,#1b5c7959,transparent 36%),#050a10}
+    .style-5{background:linear-gradient(#9ce6fa0b 1px,transparent 1px),linear-gradient(90deg,#9ce6fa0b 1px,transparent 1px),radial-gradient(circle at 50% 15%,#12334b,#05080c 66%);background-size:24px 24px,24px 24px,auto}
+    .style-6{background:repeating-linear-gradient(0deg,#ffffff06 0 1px,transparent 1px 4px),radial-gradient(circle at 50% 50%,#24211f,#080707 75%)}.style-6::after{background:linear-gradient(110deg,#ffffff04,transparent 45%,#ffffff06);mix-blend-mode:screen}
+    .style-7{background:repeating-radial-gradient(ellipse 55% 40% at 83% 20%,transparent 0 23px,#7fc9d81c 24px 25px,transparent 26px 43px),#070a0e}
+    .style-8{background:linear-gradient(115deg,transparent 20%,#a6d7e91a 34%,transparent 45%),linear-gradient(115deg,transparent 55%,#8e78e91b 69%,transparent 82%),#07080d}
+    .style-9{background:linear-gradient(0deg,#1466816b,transparent 35%),radial-gradient(ellipse 100% 18% at 50% 100%,#74d8e54d,transparent 80%),#06080b}
+    .style-10{background:radial-gradient(ellipse 65% 35% at 20% 0%,#4e40a34a,transparent 90%),radial-gradient(ellipse 65% 42% at 98% 60%,#1b91a453,transparent 85%),radial-gradient(ellipse 50% 35% at 45% 95%,#b3488440,transparent 90%),#080811}
+    dialog{width:min(1120px,calc(100% - 24px));max-height:calc(100vh - 28px);padding:0;border:1px solid #555;border-radius:15px;background:#101010;color:#fff;overflow:auto}
+    dialog::backdrop{background:#000c}.dialog-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 18px}.dialog-bar strong{font-size:15px}.close{padding:7px 12px;border:1px solid #555;border-radius:20px;background:#222;color:#fff}.dialog-mock .mock{min-height:640px;padding:48px}.dialog-mock .mock h3{font-size:42px}.dialog-mock .preview img{height:250px}
+    @media(max-width:800px){.grid{grid-template-columns:1fr}.mock{min-height:400px}.shell{width:calc(100% - 20px);padding-top:18px}}
+    @media(max-width:500px){.mock{min-height:350px;padding:20px 13px}.mock h3{font-size:23px}.promo{padding:10px}.promo strong{font-size:12px}.promo span{font-size:9px}.preview img{height:90px}.dialog-mock .mock{padding:22px;min-height:470px}.dialog-mock .mock h3{font-size:27px}.dialog-mock .preview img{height:150px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="intro"><span class="eyebrow">MOTION / BACKGROUND STUDY</span><h1>冒頭の下に続く背景・10案</h1><p>ホーム冒頭の見出しとヒーロー画像は含めず、その下のコンテンツ背景だけを同じ内容で比較します。「拡大」で広い画面の見え方も確認できます。</p></header>
+    <div class="grid" id="grid"></div>
+  </main>
+  <dialog id="large"><div class="dialog-bar"><strong id="dialog-title"></strong><button class="close" type="button">閉じる ✕</button></div><div class="dialog-mock"></div></dialog>
+  <script>
+    const options=[
+      ['ピュアブラック','画像と文字を主役にする、最も静かな黒。'],
+      ['スモークガラス','濃淡のあるチャコールと半透明のカード。'],
+      ['スタジオライト','上からの柔らかい照明で奥行きを出す。'],
+      ['シアンの気配','左右ににじむ寒色の光。現在のアクセント色と相性がよい。'],
+      ['細いグリッド','制作ツールらしい微細な方眼。'],
+      ['フィルムの質感','横方向の薄い粒子感で映像らしさを加える。'],
+      ['等高線','ゆるい曲線の重なりで、奥へ広がる印象。'],
+      ['斜めの光束','画面を横切る細い光が流れを作る。'],
+      ['地平線の光','下から光が立ち上がり、次のセクションへつながる。'],
+      ['オーロラ','紫・シアン・ピンクの柔らかい発色で華やかに。']
+    ];
+    const mock=(i)=>`<div class="mock style-${i+1}"><span class="mock-kicker">FEATURED STYLES / MOTION</span><h3>次の「つくりたい」を見つけよう。</h3><p class="mock-lead">ひとつのスタイルを、3つのイメージから。</p><div class="promo"><div><strong>アイデアに、動きと広がりを。</strong><br><span>気になるスタイルを保存して、次の制作のヒントに。</span></div><i aria-hidden="true">↗</i></div><div class="previews"><div class="preview"><img src="/demo/runway-walk.jpg" alt="ランウェイウォークのイメージ"><span>ランウェイウォーク</span></div><div class="preview"><img src="/demo/floating-product.jpg" alt="浮かぶ商品のイメージ"><span>浮かぶ商品</span></div><div class="preview"><img src="/demo/sunset-portrait.jpg" alt="夕暮れのポートレートのイメージ"><span>夕暮れのポートレート</span></div></div></div>`;
+    const grid=document.querySelector('#grid');
+    options.forEach(([title,description],i)=>{const section=document.createElement('section');section.className='option';section.innerHTML=`<div class="option-head"><span class="number">${String(i+1).padStart(2,'0')}</span><h2>${title}</h2><button class="expand" type="button" data-index="${i}" aria-label="${title}を拡大">拡大 ↗</button></div><p class="description">${description}</p>${mock(i)}`;grid.append(section)});
+    const dialog=document.querySelector('#large');
+    grid.addEventListener('click',event=>{const button=event.target.closest('.expand');if(!button)return;const i=Number(button.dataset.index);document.querySelector('#dialog-title').textContent=`${String(i+1).padStart(2,'0')} · ${options[i][0]}`;document.querySelector('.dialog-mock').innerHTML=mock(i);dialog.showModal()});
+    document.querySelector('.close').addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+  </script>
+</body>
+</html>

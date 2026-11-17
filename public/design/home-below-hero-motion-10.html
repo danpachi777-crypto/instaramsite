@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MOTION｜トップ下部のアニメーション背景 10案</title>
+  <style>
+    :root{color-scheme:dark;font-family:Arial,"Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif;background:#050711;color:#f6faff}
+    *{box-sizing:border-box}body{margin:0}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #9beaf5;outline-offset:3px}
+    .shell{width:min(1500px,calc(100% - 32px));margin:auto;padding:26px 0 70px}
+    .intro{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:22px}.eyebrow{color:#9beaf5;font-size:11px;font-weight:800;letter-spacing:.18em}
+    h1{margin:4px 0;font-size:clamp(25px,3vw,39px);line-height:1.25}.intro p{max-width:820px;margin:0;color:#aeb8ca;font-size:12px;line-height:1.6}
+    .toggle{flex:none;padding:9px 15px;border:1px solid #56687b;border-radius:25px;background:#172438;color:#fff;font-size:12px}.toggle:hover{background:#234059}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:19px}.option{min-width:0;overflow:hidden;border:1px solid #314558;border-radius:14px;background:#090f19}
+    .option-head{display:flex;align-items:baseline;gap:10px;padding:13px 16px 7px}.number{color:#9beaf5;font-size:12px;font-weight:800;letter-spacing:.12em}.option h2{margin:0;font-size:17px}.description{margin:0 16px 12px;color:#aeb9c8;font-size:11px;line-height:1.5}
+    .expand{margin-left:auto;padding:5px 10px;border:1px solid #567082;border-radius:20px;background:#132235;color:#fff;font-size:11px}.expand:hover{border-color:#9beaf5}
+    .stage{position:relative;isolation:isolate;min-height:370px;overflow:hidden;padding:22px;background:#050915}
+    .stage::before,.stage::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none}.stage>*{position:relative;z-index:1}
+    .sample-kicker{color:#9feaf6;font-size:9px;font-weight:800;letter-spacing:.16em}.sample h3{margin:5px 0 4px;font-size:clamp(22px,2.5vw,32px);line-height:1.25;text-shadow:0 2px 12px #000}.sample p{margin:0 0 15px;color:#d5e5ef;font-size:11px}
+    .promo{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px;padding:11px 14px;border:1px solid #ffffff38;border-radius:9px;background:#071827bd;backdrop-filter:blur(4px)}
+    .promo strong{font-size:12px}.promo span{color:#a6e5ee;font-size:18px}.thumbs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.thumb{overflow:hidden;border:1px solid #ffffff35;border-radius:7px;background:#0c1825b8}.thumb img{display:block;width:100%;height:118px;object-fit:cover}.thumb span{display:block;overflow:hidden;padding:4px 5px;color:#fff;font-size:9px;font-weight:700;white-space:nowrap;text-overflow:ellipsis}
+    .style-1{background:#060b19 url('/demo/creative-hero-no-face.jpg') center / cover}.style-1::before{inset:-12%;background:inherit;filter:blur(12px) brightness(.48);animation:hero-echo 12s ease-in-out infinite alternate}.style-1::after{background:linear-gradient(90deg,#050b1cba,#050b1c5c,#050b1cba)}
+    .style-2{background:#050a1a}.style-2::before{inset:-30%;background:radial-gradient(ellipse 35% 28% at 19% 22%,#28c9f091,transparent),radial-gradient(ellipse 32% 28% at 80% 66%,#bf46d17d,transparent),radial-gradient(ellipse 33% 25% at 52% 93%,#5968e55c,transparent);filter:blur(35px);animation:aurora 13s ease-in-out infinite alternate}
+    .style-3{background:linear-gradient(#9beaf513 1px,transparent 1px),linear-gradient(90deg,#9beaf513 1px,transparent 1px),#070e1e;background-size:28px 28px,28px 28px,auto}.style-3::before{background:linear-gradient(transparent 22%,#76e6ff14 46%,#76e6ff64 50%,#76e6ff14 54%,transparent 80%);animation:scan 5s linear infinite}.style-3::after{background:radial-gradient(circle at 78% 20%,#b061e328,transparent 44%)}
+    .style-4{background:#060b19}.style-4::before{inset:-40%;background:repeating-linear-gradient(125deg,transparent 0 70px,#8feaf125 72px 75px,transparent 77px 150px),repeating-linear-gradient(50deg,transparent 0 90px,#bb5bea20 92px 95px,transparent 97px 180px);animation:film-ribbon 14s linear infinite}.style-4::after{background:linear-gradient(90deg,#050b1a99,transparent,#050b1a99)}
+    .style-5{background:radial-gradient(circle at 50% 70%,#122b4b,#050915 70%)}.style-5::before{inset:-25%;background-image:radial-gradient(circle,#8cefffba 1px,transparent 2px),radial-gradient(circle,#da91facc 1px,transparent 2px);background-size:39px 48px,79px 70px;background-position:0 0,21px 31px;animation:particles 16s linear infinite}.style-5::after{background:radial-gradient(ellipse at 50% 100%,#44cce739,transparent 60%)}
+    .style-6{background:#060a17}.style-6::before{inset:-30%;background:conic-gradient(from 30deg at 50% 50%,transparent 0 17%,#4bbfec38 22%,transparent 30% 50%,#d66ae338 57%,transparent 65% 100%);filter:blur(20px);animation:prism 19s linear infinite}.style-6::after{background:repeating-linear-gradient(90deg,#ffffff08 0 1px,transparent 1px 42px)}
+    .style-7{background:#070b1c}.style-7::before{inset:-35%;background:repeating-radial-gradient(ellipse 50% 40% at 50% 70%,transparent 0 24px,#78dff146 25px 26px,transparent 27px 49px);animation:ripple 9s ease-in-out infinite}.style-7::after{background:radial-gradient(circle at 50% 60%,#ad5de034,transparent 45%)}
+    .style-8{background:#080b19}.style-8::before{inset:-30%;background:radial-gradient(circle at 23% 32%,#9145d284,transparent 27%),radial-gradient(circle at 78% 35%,#288dd289,transparent 28%),radial-gradient(circle at 50% 90%,#d65cb859,transparent 29%);filter:blur(32px);animation:clouds 11s ease-in-out infinite alternate}.style-8::after{background:linear-gradient(0deg,#0408179e,transparent 72%)}
+    .style-9{background:repeating-linear-gradient(135deg,#070b1c 0 38px,#0c1630 39px 40px,#070b1c 41px 80px)}.style-9::before{inset:-40%;background:linear-gradient(115deg,transparent 41%,#92eff76e 48%,transparent 55%,transparent 67%,#c868e64f 72%,transparent 79%);animation:beams 8s linear infinite}.style-9::after{background:linear-gradient(0deg,#05091382,transparent 70%)}
+    .style-10{background:radial-gradient(circle at 50% 80%,#17254c,#050817 70%)}.style-10::before{inset:-25%;background-image:radial-gradient(circle,#ecf8ffcd 1px,transparent 2px),radial-gradient(circle,#8ce8ffb0 1px,transparent 2px);background-size:57px 61px,99px 87px;animation:starflow 19s linear infinite}.style-10::after{background:radial-gradient(ellipse 50% 25% at 50% 100%,#aa5bea55,transparent);animation:glow 5s ease-in-out infinite}
+    @keyframes hero-echo{from{transform:scale(1) translateX(-3%)}to{transform:scale(1.15) translateX(3%)}}
+    @keyframes aurora{from{transform:translate(-5%,-4%) rotate(-9deg)}to{transform:translate(6%,5%) rotate(8deg)}}
+    @keyframes scan{from{transform:translateY(-95%)}to{transform:translateY(95%)}}
+    @keyframes film-ribbon{from{transform:translateX(-15%) rotate(-4deg)}to{transform:translateX(15%) rotate(4deg)}}
+    @keyframes particles{from{transform:translateY(0)}to{transform:translateY(-110px)}}
+    @keyframes prism{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    @keyframes ripple{0%,100%{transform:scale(.88);opacity:.6}50%{transform:scale(1.12);opacity:1}}
+    @keyframes clouds{from{transform:translate(-5%,4%) rotate(-6deg)}to{transform:translate(6%,-4%) rotate(6deg)}}
+    @keyframes beams{from{transform:translateX(-38%)}to{transform:translateX(38%)}}
+    @keyframes starflow{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(110px) rotate(2deg)}}
+    @keyframes glow{0%,100%{opacity:.35}50%{opacity:1}}
+    body.paused .stage,body.paused .stage::before,body.paused .stage::after{animation-play-state:paused!important}
+    dialog{width:min(1100px,calc(100% - 24px));max-height:calc(100vh - 25px);padding:0;overflow:auto;border:1px solid #4d6377;border-radius:14px;background:#080d17;color:#fff}dialog::backdrop{background:#000d}
+    .dialog-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 17px}.dialog-head strong{font-size:15px}.close{padding:7px 12px;border:1px solid #5a7086;border-radius:20px;background:#172438;color:#fff}.dialog-body .stage{min-height:640px;padding:40px}.dialog-body .sample h3{font-size:43px}.dialog-body .thumb img{height:230px}
+    @media(max-width:820px){.grid{grid-template-columns:1fr}.shell{width:calc(100% - 20px)}.stage{min-height:350px}}
+    @media(max-width:480px){.intro{display:block}.toggle{margin-top:11px}.stage{min-height:325px;padding:16px}.thumbs{gap:4px}.thumb img{height:82px}.thumb span{font-size:8px}.dialog-body .stage{min-height:480px;padding:20px}.dialog-body .sample h3{font-size:27px}.dialog-body .thumb img{height:130px}}
+    @media(prefers-reduced-motion:reduce){.stage,.stage::before,.stage::after{animation:none!important}}
+  </style>
+</head>
+<body>
+  <main class="shell"><header class="intro"><div><span class="eyebrow">MOTION / BELOW THE HERO</span><h1>トップの下につながる動く背景・10案</h1><p>提示された冒頭画面の紺・シアン・ピンクを手がかりに、冒頭より下の背景を同じ内容で比較します。各案は「拡大」で画面全体の見え方を確認できます。</p></div><button class="toggle" type="button" aria-pressed="false">動きを停止</button></header><div class="grid" id="grid"></div></main>
+  <dialog id="large"><div class="dialog-head"><strong id="large-title"></strong><button class="close" type="button">閉じる ✕</button></div><div class="dialog-body"></div></dialog>
+  <script>
+    const ideas=[
+      ['ヒーローの残光','冒頭画像の色をぼかして引き継ぐ。'],
+      ['シアンとピンクのオーロラ','左右の柔らかい光がゆっくり漂う。'],
+      ['クリエイターグリッド','細い方眼の上を光の走査線が流れる。'],
+      ['フィルムリボン','映画フィルムのような斜線が横へ動く。'],
+      ['光粒の流れ','小さなシアンとピンクの粒子が上へ流れる。'],
+      ['回転するプリズム','ぼけた色光がゆっくり回転する。'],
+      ['広がる波紋','細い光の輪が呼吸するように広がる。'],
+      ['ネオンの雲','色の雲が静かに形を変える。'],
+      ['斜めの光束','奥行きのある斜線を光が横切る。'],
+      ['星のカレント','星粒がゆっくり流れ、下に光がたまる。']
+    ];
+    const thumbnails=[['runway-walk','ランウェイ'],['floating-product','商品'],['sunset-portrait','ポートレート'],['cinematic-car','映画風']].map(([slug,name])=>`<div class="thumb"><img src="/demo/${slug}.jpg" alt="${name}のイメージ" loading="lazy"><span>${name}</span></div>`).join('');
+    const stage=i=>`<div class="stage style-${i+1}"><div class="sample"><span class="sample-kicker">EXPLORE / MOTION</span><h3>次の「つくりたい」を見つけよう。</h3><p>ショート動画のスタイルから、次のインスピレーションを。</p><div class="promo"><strong>アイデアに、動きと広がりを。</strong><span aria-hidden="true">↗</span></div><div class="thumbs">${thumbnails}</div></div></div>`;
+    const grid=document.querySelector('#grid');
+    ideas.forEach(([title,description],i)=>{const option=document.createElement('section');option.className='option';option.innerHTML=`<div class="option-head"><span class="number">${String(i+1).padStart(2,'0')}</span><h2>${title}</h2><button class="expand" type="button" data-index="${i}" aria-label="${title}を拡大">拡大 ↗</button></div><p class="description">${description}</p>${stage(i)}`;grid.append(option)});
+    const dialog=document.querySelector('#large');grid.addEventListener('click',event=>{const button=event.target.closest('.expand');if(!button)return;const i=Number(button.dataset.index);document.querySelector('#large-title').textContent=`${String(i+1).padStart(2,'0')} · ${ideas[i][0]}`;document.querySelector('.dialog-body').innerHTML=stage(i);dialog.showModal()});
+    document.querySelector('.close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+    document.querySelector('.toggle').addEventListener('click',event=>{const paused=document.body.classList.toggle('paused');event.currentTarget.textContent=paused?'動きを再生':'動きを停止';event.currentTarget.setAttribute('aria-pressed',String(paused))});
+  </script>
+</body>
+</html>

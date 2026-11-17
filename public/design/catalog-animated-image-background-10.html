@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MOTION｜探すタブの生成画像＋アニメーション背景 10案</title>
+  <style>
+    :root{color-scheme:dark;font-family:Arial,"Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif;background:#050505;color:#f4f8fa}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #9de8f1;outline-offset:3px}
+    .shell{width:min(1440px,calc(100% - 36px));margin:auto;padding:28px 0 70px}
+    .intro{margin-bottom:20px}.eyebrow{color:#9de8f1;font-size:11px;font-weight:800;letter-spacing:.16em}
+    h1{margin:4px 0;font-size:clamp(25px,3.1vw,40px);line-height:1.3}.intro p{margin:0;color:#abb3bc;font-size:13px;line-height:1.7}
+    .toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:18px 0 10px}
+    .toolbar a,.toggle{padding:7px 11px;border:1px solid #4a5259;border-radius:22px;background:#171b1e;color:#e8f4f7;font-size:11px;text-decoration:none}
+    .toolbar a:hover,.toggle:hover{border-color:#9de8f1;background:#22313a}.toggle{margin-left:auto}
+    .option{margin:25px 0 32px;scroll-margin-top:20px;overflow:hidden;border:1px solid #35414a;border-radius:15px;background:#0b0e12}
+    .option-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:12px;padding:14px 18px 12px}.number{color:#a6e8f3;font-size:12px;font-weight:800;letter-spacing:.15em}
+    h2{margin:0;font-size:19px}.description{margin:0;color:#aeb9c0;font-size:12px}.prompt{margin:0 18px 14px;color:#aab7c0;font-size:11px}.prompt summary{cursor:pointer;color:#bfeaf1}.prompt p{margin:5px 0 0;line-height:1.6}
+    .sample{position:relative;isolation:isolate;min-height:450px;overflow:hidden;padding:30px 25px 36px;background:#071017}
+    .background-video{position:absolute;z-index:0;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+    .shade{position:absolute;z-index:1;inset:0;background:linear-gradient(180deg,#0206098c,#0206098a 55%,#020609bd);pointer-events:none}
+    .sample-content{position:relative;z-index:2}
+    .sample-title{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:15px}
+    .sample-title h3{margin:0;font-size:clamp(25px,2.8vw,37px);line-height:1.3;text-shadow:0 2px 15px #000}.sample-title p{margin:3px 0 0;color:#d7e3e8;font-size:12px;text-shadow:0 1px 8px #000}
+    .sample-title span{color:#bfeaf1;font-size:11px;font-weight:800;letter-spacing:.12em}
+    .filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.filters span{padding:5px 11px;border:1px solid #a5dce470;border-radius:20px;background:#07151cb5;color:#f0fbfc;font-size:11px}.filters span:first-child{background:#a5e8f0;color:#071018;font-weight:800}
+    .count{margin:0 0 10px;color:#d8e9eb;font-size:11px}
+    .cards{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px}
+    .card{min-width:0;padding:3px 3px 7px;border:1px solid #ffffff2d;border-radius:8px;background:#0b111bc9;box-shadow:0 8px 22px #0007}
+    .card img{display:block;width:100%;aspect-ratio:4/5;border-radius:5px;object-fit:cover}.card strong{display:block;overflow:hidden;margin:5px 2px 0;font-size:11px;line-height:1.35;white-space:nowrap;text-overflow:ellipsis}
+    @media(max-width:1000px){.cards{grid-template-columns:repeat(4,minmax(0,1fr))}.sample{min-height:610px}}
+    @media(max-width:600px){.shell{width:calc(100% - 16px);padding-top:17px}.intro p{font-size:11px}.toolbar{gap:5px}.toolbar a,.toggle{padding:5px 8px;font-size:10px}.toggle{margin-left:0}.option{margin:18px 0 25px}.option-head{padding:10px 12px;gap:7px}.option-head h2{font-size:16px}.description{width:100%;font-size:10px}.sample{min-height:550px;padding:16px 10px 24px}.sample-title h3{font-size:25px}.sample-title p{font-size:10px}.sample-title span{display:none}.filters{gap:4px}.filters span{font-size:9px;padding:3px 7px}.cards{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.card strong{font-size:9px}.prompt{margin:0 12px 11px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="intro"><span class="eyebrow">MOTION / CATALOG BACKGROUND STUDY</span><h1>「探す」タブの動く背景・10案</h1><p>組み込みImageGenで制作した背景画像を、それぞれ6秒・60fpsの緩やかなズームループにしました。同じテンプレート一覧に重ねて比較できます。</p><details class="prompt"><summary>画像生成の共通指定</summary><p>Use case: stylized-concept. Asset type: wide 16:9 background image behind a Japanese video-template catalog grid. Primary request: 各案に記載した内容. Composition: landscape, no focal person or product, readable dark middle area for small thumbnail cards and text. Style: cinematic premium digital art. Constraints: no typography, logos, UI, border, watermark, or identifiable brand.</p></details></header>
+    <nav class="toolbar" id="jump" aria-label="案に移動"></nav>
+    <div id="options"></div>
+  </main>
+  <script>
+    const ideas = [
+      [
+        "シアン星雲",
+        "粒子と煙が周縁に流れる、広がりのある背景。",
+        "Dark cinematic nebula of teal and cobalt light particles, wisps of atmospheric haze flowing diagonally behind a calm dark center; premium AI video gallery backdrop"
+      ],
+      [
+        "リキッドクローム",
+        "黒い金属の反射がゆっくり呼吸する背景。",
+        "Liquid black chrome surface with broad silver reflections and subtle cyan edges, abstract undulating metallic waves, deep shadow areas for overlaid interface"
+      ],
+      [
+        "回路の地平",
+        "細い回路が奥へ続く、制作ツールらしい背景。",
+        "Futuristic circuit landscape, fine luminous cyan traces and tiny nodes receding into dark space, restrained high-end tech aesthetic, dark center for interface"
+      ],
+      [
+        "ホログラムリボン",
+        "光の帯が浮かぶ、柔らかな近未来感。",
+        "Translucent holographic ribbons in icy cyan and violet curling through black space, elegant flowing silk-like light, plenty of quiet dark space"
+      ],
+      [
+        "フロストガラス",
+        "ガラス片の青い縁が光る、静かな背景。",
+        "Angular frosted glass shards suspended in a dark studio, subtle electric blue edge lighting and soft reflections, minimal editorial abstract background"
+      ],
+      [
+        "映画的な雲",
+        "雲と青い光が奥行きを作る映画風の背景。",
+        "Dramatic charcoal storm clouds with narrow shafts of pale blue light and faint atmospheric mist, cinematic but unobtrusive background for a media library"
+      ],
+      [
+        "光ファイバー",
+        "長い光跡が横方向に走る背景。",
+        "Long fiber-optic light trails in cyan and indigo sweeping across a black field, delicate points of light, energetic but low contrast in the center"
+      ],
+      [
+        "未来のトンネル",
+        "曲線の建築が奥へ誘導する背景。",
+        "Monumental dark architectural tunnel made of repeating curved ribs, soft cyan light at the far end, immersive perspective, calm shadows"
+      ],
+      [
+        "月光の砂丘",
+        "立体的な砂丘と発光する線の背景。",
+        "Abstract midnight sand dunes with fine luminous contour lines and silver-blue moonlight, tactile sculptural landscape, spacious dark areas"
+      ],
+      [
+        "深海の発光",
+        "青緑の粒子が深く漂う有機的な背景。",
+        "Bioluminescent underwater-inspired particles and slow flowing blue-green currents in deep black, soft organic glow, cinematic abstract background"
+      ]
+    ];
+    const templates=[
+      ['runway-walk','ランウェイウォーク'],['floating-product','浮かぶ商品'],['sunset-portrait','夕暮れのポートレート'],['cinematic-car','映画風の車'],
+      ['neon-walk','ネオン街を歩く'],['luxury-bottle','高級ボトル'],['dream-room','夢のような部屋'],['outfit-switch','コーディネート切り替え']
+    ];
+    const cards=templates.map(([slug,title])=>`<div class="card"><img src="/demo/${slug}.jpg" alt="${title}のイメージ" loading="lazy"><strong>${title}</strong></div>`).join('');
+    const jump=document.querySelector('#jump');
+    ideas.forEach((idea,i)=>{const id=String(i+1).padStart(2,'0');const link=document.createElement('a');link.href=`#option-${id}`;link.textContent=id;jump.append(link)});
+    const toggle=document.createElement('button');toggle.type='button';toggle.className='toggle';toggle.textContent='動画を停止';toggle.setAttribute('aria-pressed','false');jump.append(toggle);
+    const options=document.querySelector('#options');
+    ideas.forEach(([title,description,prompt],i)=>{const id=String(i+1).padStart(2,'0');const section=document.createElement('section');section.className='option';section.id=`option-${id}`;section.innerHTML=`<header class="option-head"><span class="number">${id}</span><h2>${title}</h2><p class="description">${description}</p></header><div class="sample"><video class="background-video" muted loop playsinline preload="none" poster="/design/catalog-bg-${id}.jpg" aria-hidden="true"><source src="/design/catalog-bg-${id}-loop.mp4" type="video/mp4"></video><div class="shade"></div><div class="sample-content"><div class="sample-title"><div><h3>テンプレート</h3><p>ひらめきに出会う、小さなスタイルライブラリー。</p></div><span>DISCOVER / MOTION</span></div><div class="filters"><span>すべて</span><span>ファッション</span><span>商品</span><span>ライフスタイル</span><span>シネマティック</span><span>エフェクト</span></div><p class="count">11件のテンプレート</p><div class="cards">${cards}</div></div></div><details class="prompt"><summary>生成プロンプト</summary><p>${prompt}</p></details>`;options.append(section)});
+    const videos=[...document.querySelectorAll('.background-video')];
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    const visible=new Set();let paused=false;
+    const update=()=>videos.forEach(video=>{if(visible.has(video)&&!paused&&!reduced.matches&&!document.hidden){void video.play().catch(()=>video.pause())}else video.pause()});
+    const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>entry.isIntersecting?visible.add(entry.target):visible.delete(entry.target));update()},{threshold:.08});
+    videos.forEach(video=>observer.observe(video));
+    reduced.addEventListener('change',update);document.addEventListener('visibilitychange',update);
+    toggle.addEventListener('click',()=>{paused=!paused;toggle.textContent=paused?'動画を再生':'動画を停止';toggle.setAttribute('aria-pressed',String(paused));update()});
+  </script>
+</body>
+</html>

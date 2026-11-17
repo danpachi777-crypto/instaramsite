@@ -24,7 +24,7 @@ export function FavoriteList({ templates }: { templates: Template[] }) {
     <>
       <p className="result-count" role="status">{saved.length}件のお気に入り</p>
       <div className="template-grid">
-        {saved.map((template, index) => <TemplateCard key={template.id} template={template} index={index} />)}
+        {saved.map((template, index) => <TemplateCard key={template.id} template={template} index={index} compact />)}
       </div>
     </>
   );

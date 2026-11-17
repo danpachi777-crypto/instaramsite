@@ -1,7 +1,7 @@
 "use client";
-/* eslint-disable @next/next/no-img-element -- 管理者指定の任意HTTPS素材に対応し、動画も操作時だけ取得する。 */
 import { useState } from "react";
 import type { Template } from "@/lib/validation";
+import { MotionImage } from "@/components/motion-image";
 export function Preview({
   template,
   eager = false,
@@ -46,13 +46,10 @@ export function Preview({
       ) : (
         <>
           {template.poster_url && !posterFailed ? (
-            <img
+            <MotionImage
               src={template.poster_url}
               alt={`${template.title}の仮のイメージ`}
-              width={400}
-              height={650}
-              loading={eager ? "eager" : "lazy"}
-              decoding="async"
+              eager={eager}
               onError={() => setPosterFailed(true)}
             />
           ) : (

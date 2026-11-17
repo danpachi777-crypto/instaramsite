@@ -12,24 +12,28 @@ export const metadata: Metadata = {
 export default async function Templates({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string; categories?: string }>;
+  searchParams: Promise<{ category?: string; categories?: string; q?: string }>;
 }) {
   if (configIssue()) return null;
   const params = await searchParams;
   const selected = params.category;
+  const query = params.q?.trim().toLocaleLowerCase("ja") ?? "";
   const parsed = categorySchema.safeParse(selected);
   const knownKeys = new Set<string>(videoCategories.map((item) => item.key));
   const picked = !selected && params.categories
     ? params.categories.split(",").filter((key): key is VideoCategoryKey => knownKeys.has(key))
     : [];
   const templates = await getPublicTemplates();
-  const filtered = selected
+  const byCategory = selected
     ? parsed.success
       ? templates.filter((t) => t.category === parsed.data)
       : []
     : picked.length
       ? templates.filter((t) => picked.includes(t.category))
     : templates;
+  const filtered = query
+    ? byCategory.filter((t) => `${t.title} ${t.description} ${categories[t.category]}`.toLocaleLowerCase("ja").includes(query))
+    : byCategory;
   return (
     <main className="container section catalog">
       <div className="catalog-heading">
@@ -52,6 +56,7 @@ export default async function Templates({
       </nav>
       <p className="result-count" role="status">
         {filtered.length}件のテンプレート
+        {query ? ` · 「${params.q?.trim()}」の検索結果` : ""}
         {parsed.success ? ` · ${categories[parsed.data]}` : picked.length ? ` · ${picked.length}カテゴリを選択中` : ""}
       </p>
       {filtered.length ? (
@@ -60,7 +65,7 @@ export default async function Templates({
             <TemplateCard key={t.id} template={t} index={i} compact />
           ))}
         </div>
-      ) : selected || picked.length ? (
+      ) : selected || picked.length || query ? (
         <div className="empty-state">
           <h2>該当するテンプレートはありません。</h2>
           <p>別のカテゴリーも見てみましょう。</p>

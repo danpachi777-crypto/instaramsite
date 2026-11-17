@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>コレクション背景案 10種類 | MOTION</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 48px 24px 80px; background: #080a0f; color: #f5f8ff; font-family: Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; }
+    main { max-width: 1240px; margin: auto; }
+    header { margin-bottom: 32px; }
+    header small { color: #8eeaff; font-size: 12px; font-weight: 800; letter-spacing: .18em; }
+    h1 { margin: 10px 0; font-size: clamp(28px, 4vw, 48px); }
+    header p { max-width: 760px; color: #b3bbc9; line-height: 1.7; }
+    .options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+    article { overflow: hidden; border: 1px solid #354053; border-radius: 16px; background: #141922; }
+    .preview { position: relative; display: flex; flex-direction: column; justify-content: center; min-height: 280px; padding: 32px; overflow: hidden; background-image: var(--veil), var(--scene); background-position: center, var(--position, center); background-size: cover; color: #fff; }
+    .preview::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--effect, transparent); mix-blend-mode: var(--blend, normal); }
+    .preview > * { position: relative; z-index: 1; }
+    .preview small { color: var(--accent, #9bebff); font-size: 11px; font-weight: 800; letter-spacing: .15em; }
+    .preview h2 { max-width: 450px; margin: 14px 0 8px; font-size: clamp(20px, 2.3vw, 32px); line-height: 1.35; }
+    .preview p { margin: 0; color: #e5ebf5; font-size: 13px; }
+    .mock-tabs { display: flex; gap: 16px; margin-top: 25px; font-size: 11px; font-weight: 700; }
+    .mock-tabs span { padding-bottom: 5px; border-bottom: 2px solid transparent; }
+    .mock-tabs span:first-child { border-color: var(--accent, #9bebff); }
+    .caption { padding: 16px 20px 19px; }
+    .caption strong { font-size: 17px; }
+    .caption p { margin: 5px 0 0; color: #aeb8c8; font-size: 13px; line-height: 1.6; }
+    .o1 { --scene: url('../public/demo/neon-walk.jpg'); --veil: linear-gradient(90deg, #030b1ce8, #04132780); --accent: #5ce5ff; --position: center 55%; }
+    .o2 { --scene: url('../public/demo/runway-walk.jpg'); --veil: linear-gradient(90deg, #060719eb, #1b17475e); --accent: #d7bcff; --position: center 28%; }
+    .o3 { --scene: url('../public/demo/orbit-object.jpg'); --veil: linear-gradient(110deg, #04111de9, #09254075); --accent: #8ceaf0; --effect: radial-gradient(circle at 82% 46%, #92e5ff5b, transparent 27%); --blend: screen; }
+    .o4 { --scene: url('../public/demo/cinematic-car.jpg'); --veil: linear-gradient(90deg, #170c0be8, #50200b6b); --accent: #ffc484; --position: center 60%; }
+    .o5 { --scene: url('../public/demo/sports-moment.jpg'); --veil: linear-gradient(90deg, #06151ce8, #17373b73); --accent: #a7ffdc; --position: center 42%; }
+    .o6 { --scene: url('../public/demo/dream-room.jpg'); --veil: linear-gradient(90deg, #121020ed, #4a25598c); --accent: #ffc4f4; --position: center 55%; }
+    .o7 { --scene: url('../public/demo/luxury-bottle.jpg'); --veil: linear-gradient(90deg, #05080ef0, #151e2b80); --accent: #e0d3ad; --position: center 55%; }
+    .o8 { --scene: url('../public/demo/sunset-portrait.jpg'); --veil: linear-gradient(90deg, #251225eb, #bb574963); --accent: #ffd0bd; --position: center 40%; }
+    .o9 { --scene: url('../public/demo/animal-adventure.jpg'); --veil: linear-gradient(90deg, #05130de8, #2e463278); --accent: #c8f5a6; --position: center 55%; }
+    .o10 { --scene: url('../public/demo/creative-hero.jpg'); --veil: linear-gradient(115deg, #130b28dc, #321449a6 52%, #061335aa); --accent: #ffb7f5; --position: 65% center; --effect: repeating-linear-gradient(145deg, #a76dff1a 0 2px, transparent 2px 16px); --blend: screen; }
+    @media (max-width: 760px) { body { padding: 28px 14px 50px; } .options { grid-template-columns: 1fr; gap: 18px; } .preview { min-height: 245px; padding: 24px; } .mock-tabs { flex-wrap: wrap; gap: 11px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <small>MOTION / BACKGROUND STUDY</small>
+      <h1>「心をつかむ映像を探そう」背景案</h1>
+      <p>現在サイトに反映した暗いコラージュ背景とは別の10案です。各案はローカルの既存素材とCSSだけで再現できます。HTMLファイルをブラウザで開くと比較できます。</p>
+    </header>
+    <div class="options">
+      <article><div class="preview o1"><small>01 / NEON CITY</small><h2>心をつかむ映像を探そう</h2><p>光が交差する夜の街から。</p><div class="mock-tabs"><span>すべて</span><span>映画風</span><span>特殊効果</span></div></div><div class="caption"><strong>ネオンシティ</strong><p>青とピンクの街灯を背景にして、映画風の作品を強く印象づける。</p></div></article>
+      <article><div class="preview o2"><small>02 / RUNWAY NOIR</small><h2>心をつかむ映像を探そう</h2><p>視線を奪うファッションの瞬間。</p><div class="mock-tabs"><span>すべて</span><span>ファッション</span><span>ライフスタイル</span></div></div><div class="caption"><strong>ランウェイ・ノワール</strong><p>モデルのシルエットを大きく使い、上品でシャープな雰囲気に。</p></div></article>
+      <article><div class="preview o3"><small>03 / CHROME ORBIT</small><h2>心をつかむ映像を探そう</h2><p>まだない世界観に出会う。</p><div class="mock-tabs"><span>すべて</span><span>特殊効果</span><span>商品紹介</span></div></div><div class="caption"><strong>クローム・オービット</strong><p>金属の質感と青い光で、未来的な映像ライブラリーに。</p></div></article>
+      <article><div class="preview o4"><small>04 / CINEMATIC HEAT</small><h2>心をつかむ映像を探そう</h2><p>一瞬で物語を始めよう。</p><div class="mock-tabs"><span>すべて</span><span>映画風</span><span>スポーツ</span></div></div><div class="caption"><strong>シネマティック・ヒート</strong><p>車と琥珀色の光で、アクション映画の予告編のような迫力を出す。</p></div></article>
+      <article><div class="preview o5"><small>05 / ENERGY FIELD</small><h2>心をつかむ映像を探そう</h2><p>動きの頂点を見逃さない。</p><div class="mock-tabs"><span>すべて</span><span>スポーツ</span><span>映画風</span></div></div><div class="caption"><strong>エナジー・フィールド</strong><p>競技の瞬間と緑がかった光で、躍動感のある背景に。</p></div></article>
+      <article><div class="preview o6"><small>06 / DREAM INTERIOR</small><h2>心をつかむ映像を探そう</h2><p>日常を少し夢の中へ。</p><div class="mock-tabs"><span>すべて</span><span>ライフスタイル</span><span>ファッション</span></div></div><div class="caption"><strong>ドリーム・インテリア</strong><p>やわらかな室内の光と紫の霞で、親しみやすい創作空間に。</p></div></article>
+      <article><div class="preview o7"><small>07 / LUXE SPOTLIGHT</small><h2>心をつかむ映像を探そう</h2><p>細部に宿る美しさまで。</p><div class="mock-tabs"><span>すべて</span><span>商品紹介</span><span>ファッション</span></div></div><div class="caption"><strong>リュクス・スポットライト</strong><p>黒と淡い金色を中心に、商品紹介が映える落ち着いた背景。</p></div></article>
+      <article><div class="preview o8"><small>08 / SUNSET GLOW</small><h2>心をつかむ映像を探そう</h2><p>心に残る光を選ぼう。</p><div class="mock-tabs"><span>すべて</span><span>ライフスタイル</span><span>映画風</span></div></div><div class="caption"><strong>サンセット・グロウ</strong><p>夕暮れのオレンジとピンクで、人の温度が伝わる印象に。</p></div></article>
+      <article><div class="preview o9"><small>09 / WILD STORY</small><h2>心をつかむ映像を探そう</h2><p>小さな冒険を、大きな物語に。</p><div class="mock-tabs"><span>すべて</span><span>動物</span><span>ライフスタイル</span></div></div><div class="caption"><strong>ワイルド・ストーリー</strong><p>深い森の色合いで、自然や動物のテーマを引き立てる。</p></div></article>
+      <article><div class="preview o10"><small>10 / PRISM COLLAGE</small><h2>心をつかむ映像を探そう</h2><p>ひとつの世界に収まらない。</p><div class="mock-tabs"><span>すべて</span><span>特殊効果</span><span>映画風</span></div></div><div class="caption"><strong>プリズム・コラージュ</strong><p>トップの画像を違う位置と紫の光で再構成し、テーマの多彩さを伝える。</p></div></article>
+    </div>
+  </main>
+</body>
+</html>

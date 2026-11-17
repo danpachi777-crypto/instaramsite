@@ -13,9 +13,24 @@ export function Header() {
         </Link>
       </div>
       <nav aria-label="メインメニュー">
-        <Link href="/">ホーム</Link>
-        <Link href="/templates">探す</Link>
-        <Link href="/favorites" className="nav-how">お気に入り</Link>
+        <Link href="/">
+          <svg className="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+            <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z" />
+          </svg>
+          ホーム
+        </Link>
+        <Link href="/templates">
+          <svg className="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="10.8" cy="10.8" r="7" /><path d="m16 16 5 5" />
+          </svg>
+          探す
+        </Link>
+        <Link href="/favorites" className="nav-how">
+          <svg className="header-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+            <path d="M20.8 5.5a5.3 5.3 0 0 0-7.5 0L12 6.8l-1.3-1.3a5.3 5.3 0 0 0-7.5 7.5L12 21l8.8-8a5.3 5.3 0 0 0 0-7.5z" />
+          </svg>
+          お気に入り
+        </Link>
         <Link href="/settings" className="nav-cta">設定<span aria-hidden="true">↗</span></Link>
       </nav>
     </header>

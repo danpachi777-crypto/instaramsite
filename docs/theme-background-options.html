@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>「テーマから見つける」背景案 10種類 | MOTION</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 48px 24px 80px; background: #07090e; color: #f5f7fb; font-family: Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; }
+    main { width: min(1280px, 100%); margin: auto; }
+    .intro { margin-bottom: 32px; }
+    .intro small { color: #9de9f8; font-size: 11px; font-weight: 800; letter-spacing: .18em; }
+    h1 { margin: 8px 0; font-size: clamp(28px, 4vw, 48px); }
+    .intro p { max-width: 780px; margin: 0; color: #b5becb; line-height: 1.7; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    article { overflow: hidden; border: 1px solid #35404d; border-radius: 16px; background: #111820; }
+    .stage { position: relative; min-height: 290px; padding: 29px 26px 27px; overflow: hidden; background: var(--overlay), var(--image); background-color: #08111b; background-position: center, var(--position, center); background-size: cover; }
+    .stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--effect, transparent); }
+    .stage > * { position: relative; z-index: 1; }
+    .stage small { color: var(--accent, #9de9f8); font-size: 10px; font-weight: 800; letter-spacing: .16em; }
+    .stage h2 { margin: 7px 0 20px; color: #fff; font-size: clamp(19px, 2.1vw, 28px); line-height: 1.3; text-shadow: 0 2px 14px #000a; }
+    .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    .tiles div { position: relative; height: 125px; overflow: hidden; border: 1px solid #ffffff55; border-radius: 6px; background: #101722; box-shadow: 0 8px 17px #0007; }
+    .tiles img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .tiles span { position: absolute; right: 0; bottom: 0; left: 0; padding: 18px 7px 7px; background: linear-gradient(transparent, #000d); color: white; font-size: 10px; font-weight: 800; }
+    .caption { padding: 15px 19px 18px; }
+    .caption strong { font-size: 17px; }
+    .caption p { margin: 5px 0 0; color: #b0bac8; font-size: 13px; line-height: 1.55; }
+    .o1 { --image: url('../public/demo/creative-hero-no-face.jpg'); --overlay: linear-gradient(90deg, #030918ed, #07122b93); --position: 55% center; --accent: #8deeff; }
+    .o2 { --image: url('../public/demo/neon-walk.jpg'); --overlay: linear-gradient(90deg, #080b23eb, #102d5fa6); --position: center 58%; --accent: #fa8ae5; }
+    .o3 { --image: url('../public/demo/sunset-portrait.jpg'); --overlay: linear-gradient(90deg, #1b1024ef, #8e3e4e8c); --position: center 42%; --accent: #ffd3ae; }
+    .o4 { --image: url('../public/demo/runway-walk.jpg'); --overlay: linear-gradient(90deg, #0c101cf2, #292a4d9c); --position: center 36%; --accent: #e4d8ff; }
+    .o5 { --image: url('../public/demo/dream-room.jpg'); --overlay: linear-gradient(90deg, #09121aeb, #5f558b9c); --position: center 44%; --accent: #d3c7ff; }
+    .o6 { --image: url('../public/demo/cinematic-car.jpg'); --overlay: linear-gradient(90deg, #0c0c11ed, #2341569e); --position: center 62%; --accent: #a9eaf5; }
+    .o7 { --image: url('../public/demo/sports-moment.jpg'); --overlay: linear-gradient(90deg, #08121cf0, #1e456ca3); --position: center 47%; --accent: #d3f5ff; }
+    .o8 { --image: url('../public/demo/animal-adventure.jpg'); --overlay: linear-gradient(90deg, #05120eef, #1c503b9c); --position: center 50%; --accent: #c7f7b5; }
+    .o9 { --image: url('../public/demo/luxury-bottle.jpg'); --overlay: linear-gradient(90deg, #070b10f2, #5d473a9c); --position: center 54%; --accent: #f2d8a3; }
+    .o10 { --image: radial-gradient(circle at 78% 25%, #6c4dcb 0, transparent 32%), radial-gradient(circle at 20% 80%, #1986a4 0, transparent 34%), repeating-linear-gradient(115deg, #ffffff08 0 1px, transparent 1px 24px), #07121e; --overlay: linear-gradient(90deg, #04111ce3, #07142364); --accent: #9eecfa; }
+    @media (max-width: 760px) { body { padding: 26px 14px 50px; } .grid { grid-template-columns: 1fr; gap: 16px; } .stage { min-height: 260px; padding: 24px 16px; } .tiles { gap: 5px; } .tiles div { height: 105px; } .tiles span { font-size: 9px; padding-inline: 4px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="intro"><small>MOTION / THEME BACKGROUND STUDY</small><h1>「テーマから見つける」背景案 10種類</h1><p>01「プリズム・シネマ」を現在のホームに反映しています。見出しとテーマカードを重ねて、実際のセクションに近い状態で比べられます。画像はすべてこのリポジトリ内の素材です。</p></header>
+    <div class="grid">
+      <article><div class="stage o1"><small>01 / PRISM CINEMA</small><h2>テーマから見つける</h2><div class="tiles"><div><img src="../public/demo/runway-walk.jpg" alt=""><span>ファッション</span></div><div><img src="../public/demo/luxury-bottle.jpg" alt=""><span>商品紹介</span></div><div><img src="../public/demo/animal-adventure.jpg" alt=""><span>動物</span></div><div><img src="../public/demo/sports-moment.jpg" alt=""><span>スポーツ</span></div></div></div><div class="caption"><strong>プリズム・シネマ</strong><p>トップ画像を広く使い、多彩なジャンルが集まる印象にする。</p></div></article>
+      <article><div class="stage o2"><small>02 / NEON BOULEVARD</small><h2>テーマから見つける</h2><div class="tiles"><div><img src="../public/demo/runway-walk.jpg" alt=""><span>ファッション</span></div><div><img src="../public/demo/luxury-bottle.jpg" alt=""><span>商品紹介</span></div><div><img src="../public/demo/animal-adventure.jpg" alt=""><span>動物</span></div><div><img src="../public/demo/sports-moment.jpg" alt=""><span>スポーツ</span></div></div></div><div class="caption"><strong>ネオン・ブルバード</strong><p>夜の街の光で、テーマ一覧を都会的で映画的な入口にする。</p></div></article>
+      <article><div class="stage o3"><small>03 / SUNSET PULSE</small><h2>テーマから見つける</h2><div class="tiles"><div><img src="../public/demo/runway-walk.jpg" alt=""><span>ファッション</span></div><div><img src="../public/demo/luxury-bottle.jpg" alt=""><span>商品紹介</span></div><div><img src="../public/demo/animal-adventure.jpg" alt=""><span>動物</span></div><div><img src="../public/demo/sports-moment.jpg" alt=""><span>スポーツ</span></div></div></div><div class="caption"><strong>サンセット・パルス</strong><p>夕暮れの赤みで、創作への期待を温かく見せる。</p></div></article>
+      <article><div class="stage o4"><small>04 / FASHION NOIR</small><h2>テーマから見つける</h2><div class="tiles"><div><img src="../public/demo/runway-walk.jpg" alt=""><span>ファッション</span></div><div><img src="../public/demo/luxury-bottle.jpg" alt=""><span>商品紹介</span></div><div><img src="../public/demo/animal-adventure.jpg" alt=""><span>動物</span></div><div><img src="../public/demo/sports-moment.jpg" alt=""><span>スポーツ</span></div></div></div><div class="caption"><strong>ファッション・ノワール</strong><p>ランウェイの暗い照明で、洗練されたギャラリーに寄せる。</p></div></article>
+      <article><div class="stage o5"><small>05 / DREAM LIGHT</small><h2>テーマから見つける</h2><div class="tiles"><div><img src="../public/demo/runway-walk.jpg" alt=""><span>ファッション</span></div><div><img src="../public/demo/luxury-bottle.jpg" alt=""><span>商品紹介</span></div><div><img src="../public/demo/animal-adventure.jpg" alt=""><span>動物</span></div><div><img src="../public/demo/sports-moment.jpg" alt=""><span>スポーツ</span></div></div></div><div class="caption"><strong>ドリーム・ライト</strong><p>室内の光と紫の影で、柔らかく幻想的な雰囲気にする。</p></div></article>
+      <article><div class="stage o6"><small>06 / NIGHT DRIVE</small><h2>テーマから見つける</h2><div class="tiles"><div><img src="../public/demo/runway-walk.jpg" alt=""><span>ファッション</span></div><div><img src="../public/demo/luxury-bottle.jpg" alt=""><span>商品紹介</span></div><div><img src="../public/demo/animal-adventure.jpg" alt=""><span>動物</span></div><div><img src="../public/demo/sports-moment.jpg" alt=""><span>スポーツ</span></div></div></div><div class="caption"><strong>ナイト・ドライブ</strong><p>車のシルエットと光で、スピード感のある背景にする。</p></div></article>
+      <article><div class="stage o7"><small>07 / ARENA FLASH</small><h2>テーマから見つける</h2><div class="tiles"><div><img src="../public/demo/runway-walk.jpg" alt=""><span>ファッション</span></div><div><img src="../public/demo/luxury-bottle.jpg" alt=""><span>商品紹介</span></div><div><img src="../public/demo/animal-adventure.jpg" alt=""><span>動物</span></div><div><img src="../public/demo/sports-moment.jpg" alt=""><span>スポーツ</span></div></div></div><div class="caption"><strong>アリーナ・フラッシュ</strong><p>競技場の光で、カードの並びに勢いを持たせる。</p></div></article>
+      <article><div class="stage o8"><small>08 / FOREST STORY</small><h2>テーマから見つける</h2><div class="tiles"><div><img src="../public/demo/runway-walk.jpg" alt=""><span>ファッション</span></div><div><img src="../public/demo/luxury-bottle.jpg" alt=""><span>商品紹介</span></div><div><img src="../public/demo/animal-adventure.jpg" alt=""><span>動物</span></div><div><img src="../public/demo/sports-moment.jpg" alt=""><span>スポーツ</span></div></div></div><div class="caption"><strong>フォレスト・ストーリー</strong><p>深い緑と自然光で、親しみやすい冒険の入口にする。</p></div></article>
+      <article><div class="stage o9"><small>09 / LUXE SHADOW</small><h2>テーマから見つける</h2><div class="tiles"><div><img src="../public/demo/runway-walk.jpg" alt=""><span>ファッション</span></div><div><img src="../public/demo/luxury-bottle.jpg" alt=""><span>商品紹介</span></div><div><img src="../public/demo/animal-adventure.jpg" alt=""><span>動物</span></div><div><img src="../public/demo/sports-moment.jpg" alt=""><span>スポーツ</span></div></div></div><div class="caption"><strong>リュクス・シャドウ</strong><p>黒と金の照明で、プレミアムな作品棚の印象にする。</p></div></article>
+      <article><div class="stage o10"><small>10 / DIGITAL AURORA</small><h2>テーマから見つける</h2><div class="tiles"><div><img src="../public/demo/runway-walk.jpg" alt=""><span>ファッション</span></div><div><img src="../public/demo/luxury-bottle.jpg" alt=""><span>商品紹介</span></div><div><img src="../public/demo/animal-adventure.jpg" alt=""><span>動物</span></div><div><img src="../public/demo/sports-moment.jpg" alt=""><span>スポーツ</span></div></div></div><div class="caption"><strong>デジタル・オーロラ</strong><p>写真に頼らず、青紫の光と細い線で未来感を出す。</p></div></article>
+    </div>
+  </main>
+</body>
+</html>
