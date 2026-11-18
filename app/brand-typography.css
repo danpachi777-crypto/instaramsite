@@ -1,0 +1,41 @@
+/* Match the supplied wordmark's bold sans-serif character throughout the UI. */
+body .desktop-motion-hero-copy h1,
+body .desktop-motion-story h2,
+body .desktop-world-outro .desktop-world-message,
+body .hero h1,
+body .section-heading h2,
+body .catalog-heading h1,
+body .detail-copy h1,
+body .usage-section > h2,
+body .home-signup h2,
+body .favorites-page h1 { font-weight:700; }
+body .button, body .card-link, body .template-card h3 { font-weight:600; }
+
+@media (min-width:601px) and (any-pointer:fine), (min-width:1200px) {
+  /* Override the older scene-specific typography in the lower page. */
+  body .motion-home .home-signup,
+  body .site-footer.unified-footer {
+    font-family:var(--font-sans);
+    font-weight:500;
+  }
+
+  body .motion-home .home-signup h2,
+  body:has(.desktop-motion-track) .motion-home .home-signup h2 {
+    font-family:var(--font-sans);
+    font-weight:700;
+    letter-spacing:-.025em;
+    line-height:1.5;
+  }
+
+  body .site-footer.unified-footer .wordmark,
+  body:has(.desktop-motion-track) .site-footer.unified-footer .wordmark {
+    font-family:var(--font-sans);
+    font-weight:700;
+    letter-spacing:-.025em;
+  }
+
+  body .motion-home .home-signup :is(button, input, select, textarea),
+  body .site-footer.unified-footer :is(button, input, select, textarea) {
+    font-family:var(--font-sans);
+  }
+}

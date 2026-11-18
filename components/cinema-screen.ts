@@ -1,8 +1,6 @@
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import type { CinemaWork } from "./cinema-timeline";
-import { screenCopy } from "./screen-copy";
-import { interfaceFontFamily } from "../lib/typography";
 
 function roundedOutline(width: number, height: number, radius: number) {
   const shape = new THREE.Shape();
@@ -80,7 +78,6 @@ export function createCinemaScreen(index: number, work?: CinemaWork) {
   canvas.width = 1600;
   canvas.height = 900;
   const context = canvas.getContext("2d")!;
-  const copy = screenCopy[Math.min(screenCopy.length - 1, Math.max(0, index - 1))];
   const paintPlaceholder = () => {
     const gradient = context.createRadialGradient(800, 400, 20, 800, 450, 950);
     gradient.addColorStop(0, "#1b2317");
@@ -88,28 +85,11 @@ export function createCinemaScreen(index: number, work?: CinemaWork) {
     gradient.addColorStop(1, "#080d06");
     context.fillStyle = gradient;
     context.fillRect(0, 0, 1600, 900);
-    context.fillStyle = "#adbb9959";
-    context.font = `400 20px ${interfaceFontFamily}`;
-    context.textAlign = "left";
-    context.textBaseline = "alphabetic";
-    context.fillText(index === 0 ? "MOTION / PREVIEW" : `MOTION / SCREEN ${String(index).padStart(2, "0")}`, 70, 70);
-    context.fillStyle = "#e4e9da";
-    context.font = `400 44px ${interfaceFontFamily}`;
-    context.textAlign = "center";
-    context.textBaseline = "middle";
-    context.fillText(copy.join(""), 800, 450, 1400);
   };
   paintPlaceholder();
   const placeholder = new THREE.CanvasTexture(canvas);
   placeholder.colorSpace = THREE.SRGBColorSpace;
   textures.push(placeholder);
-  if (document.fonts) {
-    void document.fonts.ready.then(() => {
-      if (disposed) return;
-      paintPlaceholder();
-      placeholder.needsUpdate = true;
-    });
-  }
   const projection = new THREE.MeshBasicMaterial({
     map: placeholder,
     transparent: true,

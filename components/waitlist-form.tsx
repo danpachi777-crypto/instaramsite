@@ -1,9 +1,12 @@
 "use client";
 import { useId, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
+import { IdeaCta } from "./idea-cta";
 import { getAttribution } from "@/components/attribution";
 import { clientApi } from "@/lib/client-api";
 import { SUCCESS_MESSAGE } from "@/lib/waitlist";
+import { useI18n } from "./i18n";
+import { formText, type formKeys } from "@/lib/i18n";
 export function WaitlistForm({
   demo,
   templateId,
@@ -16,6 +19,9 @@ export function WaitlistForm({
   legacy?: boolean;
 }) {
   const id = useId();
+  const { locale: selectedLocale, t } = useI18n();
+  const locale = legacy ? "ja" : selectedLocale;
+  const f = (key: typeof formKeys[number]) => formText(locale, key);
   const lock = useRef(false);
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
@@ -26,7 +32,7 @@ export function WaitlistForm({
     if (lock.current || demo) return;
     lock.current = true;
     setStatus("sending");
-    setMessage("お申し込みを送信しています。");
+    setMessage(f("sending"));
     const form = new FormData(event.currentTarget);
     try {
       await clientApi("/api/waitlist", "POST", {
@@ -38,13 +44,13 @@ export function WaitlistForm({
         ...getAttribution(),
       });
       setStatus("success");
-      setMessage(SUCCESS_MESSAGE);
+      setMessage(locale === "ja" ? SUCCESS_MESSAGE : f("success"));
     } catch (error) {
       setStatus("error");
       setMessage(
-        error instanceof Error && error.message !== "Failed to fetch"
+        locale === "ja" && error instanceof Error && error.message !== "Failed to fetch"
           ? error.message
-          : "通信できませんでした。接続を確認して、もう一度お試しください。",
+          : f("error"),
       );
     } finally {
       lock.current = false;
@@ -53,16 +59,16 @@ export function WaitlistForm({
   return (
     <div className="signup-form">
       {demo ? (
-        legacy ? <p className="notice">デモ表示中：メール登録は利用できません</p> : <div className="demo-registration-notice"><p className="notice">先行案内は準備中です。デモ表示中のため、メール登録は利用できません。</p><Link className="button primary" href="/templates">動画作例を見る ↗</Link></div>
+        legacy ? <p className="notice">デモ表示中：メール登録は利用できません</p> : <div className="demo-registration-notice"><p className="notice">{t("earlyPreparing")}<br />{t("unavailable")}</p><IdeaCta href="/templates">{t("viewIdeas")}</IdeaCta></div>
       ) : null}
       {(!demo || legacy) && status !== "success" && (
         <form onSubmit={submit} aria-busy={status === "sending"}>
           <fieldset disabled={demo || status === "sending"}>
             <label htmlFor={`${id}-email`}>
-              メールアドレス <span className="required">必須</span>
+              {f("email")} <span className="required">{f("required")}</span>
             </label>
             <p id={`${id}-help`} className="field-help">
-              先行案内とサービスの更新情報をお届けするために使います。
+              {locale === "ja" ? "先行案内とサービスの更新情報をお届けするために使います。" : t("earlyDescription")}
             </p>
             <input
               id={`${id}-email`}
@@ -96,19 +102,19 @@ export function WaitlistForm({
                 required
               />
               <span>
-                MOTIONの先行案内とサービス更新情報をメールで受け取ることに同意します。配信はいつでも停止できます。
+                {f("consent")}
               </span>
             </label>
             <p className="field-help">
-              <Link href="/privacy">プライバシーポリシー</Link>
-              をご確認ください。
+              <Link href="/privacy">{legacy ? "プライバシーポリシー" : t("privacy")}</Link>
+              {locale === "ja" ? "をご確認ください。" : ""}
             </p>
             <button className="button primary full" type="submit">
               {status === "sending"
-                ? "送信しています…"
+                ? f("sending")
                 : status === "error"
-                  ? "もう一度申し込む"
-                  : "先行案内に登録する"}
+                  ? f("retry")
+                  : f("submit")}
               <span aria-hidden="true">↗</span>
             </button>
           </fieldset>

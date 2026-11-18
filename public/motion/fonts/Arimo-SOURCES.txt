@@ -1,0 +1,6 @@
+Arimo by the Arimo Project Authors, SIL Open Font License 1.1.
+Official source: https://github.com/google/fonts/tree/main/ofl/arimo
+Regular: https://raw.githubusercontent.com/google/fonts/main/ofl/arimo/Arimo%5Bwght%5D.ttf
+Italic: https://raw.githubusercontent.com/google/fonts/main/ofl/arimo/Arimo-Italic%5Bwght%5D.ttf
+License: https://raw.githubusercontent.com/google/fonts/main/ofl/arimo/OFL.txt
+The supplied logo is a PNG with no font-name metadata. Arimo is selected as a visually similar Arial-compatible family, not an identified original font. Japanese uses the existing Noto Sans JP Variable fallback.

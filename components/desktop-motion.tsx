@@ -8,11 +8,11 @@ import {
   useRef,
   useState,
 } from "react";
-import Link from "next/link";
+import { IdeaCta } from "./idea-cta";
 import Lenis from "lenis";
 import { chapterAnchors, sceneChapter, scenePanel } from "./scene-timeline";
 import { PhoneLoading } from "./phone-loading";
-import { screenCopy } from "./screen-copy";
+import { useI18n } from "./i18n";
 
 const AnimalStage = lazy(() =>
   import("./animal-stage").then((module) => ({ default: module.AnimalStage })),
@@ -22,6 +22,7 @@ const desktopMedia =
   "(min-width: 601px) and (any-pointer: fine), (min-width: 1200px)";
 
 export function DesktopMotion() {
+  const { t } = useI18n();
   const [desktop, setDesktop] = useState(false);
   const [complete, setComplete] = useState(false);
   const [step, setStep] = useState(0);
@@ -130,7 +131,7 @@ export function DesktopMotion() {
           type="button"
           onClick={() => { setComplete(true); document.getElementById("examples")?.scrollIntoView(); }}
         >
-          演出をスキップして作例へ ↗
+          {t("skip")}
         </button>
         <span className="desktop-intro-screenreader" role="status">
           {sceneReady
@@ -164,66 +165,30 @@ export function DesktopMotion() {
           <div className="desktop-motion-vignette" aria-hidden="true" />
           <div className="desktop-motion-hud" aria-hidden="true">
             <span>/ MOTION_SEQUENCE_ACTIVE</span>
-            <span>/ SCENE_0{step + 1} / 03</span>
           </div>
-          <nav
-            className="desktop-motion-layers"
-            aria-label="アニメーションの章"
-          >
-            {[0, 1, 2, 3, 4].map((index) => (
-              <a
-                key={index}
-                href={`#motion-chapter-${index}`}
-                aria-label={
-                  [
-                    "オープニング",
-                    "想像した世界",
-                    "あなたの表現",
-                    "次の一本",
-                    "全世界へ",
-                  ][index]
-                }
-                aria-current={chapter === index ? "step" : undefined}
-                data-passed={chapter >= index}
-              >
-                <span className="chapter-name">{["オープニング", "想像した世界", "あなたの表現", "次の一本", "全世界へ"][index]}</span>
-                <svg viewBox="0 0 44 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M23 1.5 42 10.5Q44 12 42 13.5L23 22.5Q22 23 21 22.5L2 13.5Q0 12 2 10.5L21 1.5Q22 1 23 1.5Z"
-                    stroke="currentColor"
-                    strokeWidth=".8"
-                  />
-                </svg>
-              </a>
-            ))}
-          </nav>
           <div className="desktop-motion-hero-copy" inert={step !== 0}>
             <h1 ref={titleRef}>
-              <span>次に話題になる動画はここから</span>
+              <span>{t("hero")}</span>
             </h1>
-            <p>リール向けのAI動画スタイルを探せる、MOTION。</p>
-            <Link className="button primary" href="/templates">動画作例を見る ↗</Link>
+            <IdeaCta href="/templates">{t("viewIdeas")}</IdeaCta>
           </div>
           {step > 0 && <div className="desktop-motion-story" key={step}>
             <h2>
-              {screenCopy[Math.min(screenCopy.length - 1, Math.max(0, step - 1))].map((line) => (
-                <span key={line}>{line}</span>
-              ))}
+              <span>{t(step === 1 ? "chapter1" : step === 2 ? "chapter2" : "chapter3")}</span>
             </h2>
             <p>
-              気になる作例から、次のリールに使いたいスタイルを見つけよう。
+              {t("ideasIntro")}
             </p>
-            <Link className="button primary" href="/templates">
-              動画作例を見る ↗
-            </Link>
-            <span className="desktop-motion-story-index">0{step} / 03</span>
+            <IdeaCta href="/templates">
+              {t("viewIdeas")}
+            </IdeaCta>
           </div>}
           <a
             className="desktop-motion-scroll"
             href="#examples"
-            aria-label="演出をスキップして作例へ"
+            aria-label={t("skip")}
           >
-            演出をスキップして作例へ ↗
+            {t("skip")}
           </a>
           <p className="desktop-motion-summary">
             MOTIONから、次のクリエイティブへ。
@@ -233,8 +198,8 @@ export function DesktopMotion() {
             あなたの次の一本につなげよう。
           </p>
           <div className="desktop-world-outro" inert={chapter !== 4}>
-            <h2 className="desktop-world-message">あなたの動画を<span>全世界へ</span></h2>
-            <a className="button primary" href="#examples">動画作例を見る ↗</a>
+            <h2 className="desktop-world-message">{t("globe1")}<span>{t("globe2")}</span></h2>
+            <IdeaCta href="#examples">{t("viewIdeas")}</IdeaCta>
           </div>
         </section>
       </div>

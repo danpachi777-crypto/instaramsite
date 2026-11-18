@@ -2,6 +2,8 @@
 /* eslint-disable @next/next/no-img-element -- 管理者指定の任意HTTPS素材に対応し、動画も操作時だけ取得する。 */
 import { useState } from "react";
 import type { Template } from "@/lib/validation";
+import { useI18n } from "./i18n";
+import { formText, ideaTitle } from "@/lib/i18n";
 export function Preview({
   template,
   eager = false,
@@ -10,11 +12,13 @@ export function Preview({
   template: Pick<
     Template,
     "title" | "preview_url" | "poster_url" | "aspect_ratio"
-  >;
+  > & { slug?: string };
   eager?: boolean;
   legacy?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
+  const { t, locale } = useI18n();
+  const title = !legacy && template.slug ? ideaTitle(locale, template.slug, template.title) : template.title;
   const [posterFailed, setPosterFailed] = useState(false);
   const available = !!template.preview_url && !failed;
   return (
@@ -31,24 +35,24 @@ export function Preview({
           poster={template.poster_url || undefined}
           controlsList="nodownload"
           onError={() => setFailed(true)}
-          aria-label={`${template.title}の動画作例`}
+          aria-label={legacy ? `${title}の動画作例` : `${title} — ${t("viewIdeas")}`}
         >
           <source src={template.preview_url} />
           <track
             kind="captions"
             src="/demo/silent.vtt"
             srcLang="ja"
-            label="無音の作例"
+            label={legacy ? "無音の作例" : t("viewIdeas")}
             default
           />
-          動画を再生できません。
+          {formText(legacy ? "ja" : locale, "unsupportedVideo")}
         </video>
       ) : (
         <>
           {template.poster_url && !posterFailed ? (
             <img
               src={template.poster_url}
-              alt={`${template.title}の仮のイメージ`}
+              alt={legacy ? `${title}の仮のイメージ` : `${title} — ${t("preparing")}`}
               width={400}
               height={650}
               loading={eager ? "eager" : "lazy"}
@@ -61,7 +65,7 @@ export function Preview({
             </div>
           )}
           <span className="preview-label">
-            {failed ? "動画を読み込めませんでした" : legacy ? "プレビュー準備中" : "動画準備中 · イメージ画像"}
+            {failed ? formText(legacy ? "ja" : locale, "videoError") : legacy ? "プレビュー準備中" : t("preparing")}
           </span>
         </>
       )}

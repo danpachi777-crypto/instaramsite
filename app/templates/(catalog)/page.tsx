@@ -6,6 +6,7 @@ import { configIssue } from "@/lib/env";
 import { TemplateCard, EmptyTemplates } from "@/components/site";
 import { ResponsiveView } from "@/components/responsive-view";
 import { MobileCatalog } from "@/components/preserved-mobile-catalog";
+import { T } from "@/components/i18n";
 export const metadata: Metadata = {
   title: "動画作例",
   alternates: { canonical: "/templates" },
@@ -27,29 +28,29 @@ export default async function Templates({
   return <ResponsiveView mobile={<MobileCatalog templates={templates} selected={selected} />} desktop={(
     <main className="container section catalog">
       <div className="catalog-heading">
-        <span className="eyebrow">動画作例</span>
+        <span className="eyebrow"><T k="explore" /></span>
         <h1>
-          次のリールに、どんなスタイル？
+          <T k="catalogTitle" />
         </h1>
-        <p>カテゴリから、リール向けのAI動画スタイルを探せます。</p>
+        <p><T k="catalogIntro" /></p>
       </div>
       <nav className="filters" aria-label="カテゴリーで絞り込む">
         <Link href="/templates" aria-current={!selected ? "page" : undefined}>
-          すべて
+          <T k="all" />
         </Link>
-        {Object.entries(categories).map(([key, label]) => (
+        {(Object.keys(categories) as Array<keyof typeof categories>).map(key => (
           <Link
             key={key}
             href={`/templates?category=${key}`}
             aria-current={selected === key ? "page" : undefined}
           >
-            {label}
+            <T k={key} />
           </Link>
         ))}
       </nav>
       <p className="result-count" role="status">
-        {filtered.length}件の作例
-        {parsed.success ? ` · ${categories[parsed.data]}` : ""}
+        <T k="results" values={{count: filtered.length}} />
+        {parsed.success ? <> · <T k={parsed.data} /></> : ""}
       </p>
       {filtered.length ? (
         <div className="template-grid">
@@ -59,10 +60,9 @@ export default async function Templates({
         </div>
       ) : selected ? (
         <div className="empty-state">
-          <h2>該当するテンプレートはありません。</h2>
-          <p>別のカテゴリーも見てみましょう。</p>
+          <h2><T k="noResults" /></h2>
           <Link className="button secondary" href="/templates">
-            絞り込みを解除する
+            <T k="clearFilter" />
           </Link>
         </div>
       ) : (

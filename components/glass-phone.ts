@@ -15,7 +15,7 @@ function roundedOutline(path: THREE.Shape | THREE.Path, width: number, height: n
 }
 
 /** Open metal bezel and separate glass sheets, rather than a solid coloured block. */
-export function createGlassPhone() {
+export function createGlassPhone(frameMaterial: THREE.MeshPhysicalMaterialParameters = {}) {
   const group = new THREE.Group();
   const materials: THREE.MeshPhysicalMaterial[] = [];
   const material = (options: THREE.MeshPhysicalMaterialParameters) => {
@@ -27,7 +27,7 @@ export function createGlassPhone() {
     materials.push(result);
     return result;
   };
-  const metal = material({ color: "#a5aca0", metalness: 0.88, roughness: 0.3, opacity: 0.72, clearcoat: 0.22 });
+  const metal = material({ color: "#a5aca0", metalness: 0.88, roughness: 0.3, opacity: 0.72, clearcoat: 0.22, ...frameMaterial });
   const glass = material({ color: "#d7e0cf", metalness: 0, roughness: 0.13, opacity: 0.38, transmission: 0.72, thickness: 0.035, ior: 1.46, clearcoat: 0.35 });
   const backGlass = material({ color: "#9caa91", roughness: 0.2, opacity: 0.22, transmission: 0.6, thickness: 0.02, ior: 1.46 });
   const dark = material({ color: "#10170f", metalness: 0.45, roughness: 0.28, opacity: 0.88 });

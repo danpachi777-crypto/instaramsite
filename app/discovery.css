@@ -1,0 +1,90 @@
+/* Desktop navigation and idea discovery. The existing mobile layout is retained. */
+@media (min-width:601px) and (any-pointer:fine), (min-width:1200px) {
+  body .unified-header { direction:ltr; }
+  body .unified-header nav { gap:8px; }
+  body .unified-header nav > a, body:has(.desktop-motion-track) .unified-header nav > a { padding:10px 16px; border:0; background:transparent; white-space:nowrap; transform:translateY(0) scale(1); transform-origin:center; transition:transform .35s cubic-bezier(.2,.85,.3,1.35),background-color .25s ease,color .25s ease,box-shadow .3s ease; }
+  body .unified-header nav > a[aria-current], body:has(.desktop-motion-track) .unified-header nav > a[aria-current] { color:var(--accent); background:#d7fa6312; }
+  body .unified-header nav > a:is(:hover,:focus-visible),
+  body:has(.desktop-motion-track) .unified-header nav > a:is(:hover,:focus-visible) { color:#f1f3ea; background:#d7fa6338; transform:translateY(-5px) scale(1.12); box-shadow:0 10px 28px #d7fa6324,0 0 0 1px #d7fa6330; }
+  body .unified-header nav > a:active,
+  body:has(.desktop-motion-track) .unified-header nav > a:active { transform:translateY(-1px) scale(1.04); }
+  @media (prefers-reduced-motion:reduce) {
+    body .unified-header nav > a,
+    body:has(.desktop-motion-track) .unified-header nav > a,
+    body .unified-header nav > a:is(:hover,:focus-visible,:active),
+    body:has(.desktop-motion-track) .unified-header nav > a:is(:hover,:focus-visible,:active) { transform:none; transition:none; }
+  }
+  .language-picker { display:flex; align-items:center; flex-shrink:0; gap:8px; padding:8px 12px; min-height:44px; border:1px solid #ffffff38; border-radius:999px; background:#0d100c9c; color:var(--text); }
+  .language-picker svg { width:19px; height:19px; flex:none; }
+  .language-picker select { width:125px; max-width:16vw; min-height:28px; padding:0; border:0; border-radius:0; color:var(--text); background:transparent; font:500 13px/1.5 var(--font-sans); cursor:pointer; }
+  .language-picker option { color:var(--text); background:var(--bg); }
+  .language-picker:focus-within { outline:2px solid var(--accent); outline-offset:4px; }
+  .language-picker select:focus { outline:0; }
+  body .button.primary.idea-cta {
+    position:relative; overflow:hidden; isolation:isolate; padding-inline:32px;
+    background:#d7fa6333; border:1px solid #d7fa6380; color:#f1f3ea;
+    backdrop-filter:blur(10px); text-shadow:0 1px 4px #0008;
+    box-shadow:inset 0 1px 0 #ffffff12;
+    transition:background-color .3s ease,border-color .3s ease,box-shadow .3s ease,transform .35s cubic-bezier(.2,.8,.3,1);
+  }
+  .idea-cta-label { display:block; transition:transform .35s cubic-bezier(.2,.8,.3,1); }
+  .idea-cta-arrow { position:absolute; inset-inline-end:16px; top:calc(50% - 11px); width:22px; height:22px; pointer-events:none; opacity:0; transform:translateX(-16px); transition:opacity .3s ease,transform .4s cubic-bezier(.2,.8,.3,1); }
+  body .button.primary.idea-cta:is(:hover,:focus-visible) { background:#d7fa634d; border-color:#d7fa63b3; box-shadow:0 8px 24px #b9ed4b1a,inset 0 1px 0 #ffffff20; transform:translateY(-3px); }
+  .idea-cta:is(:hover,:focus-visible) .idea-cta-label { transform:translateX(-12px); }
+  .idea-cta:is(:hover,:focus-visible) .idea-cta-arrow { opacity:.65; transform:translateX(0); }
+  body .button.primary.idea-cta:active { transform:translateY(0); }
+  .idea-cta:dir(rtl) .idea-cta-arrow { transform:translateX(16px) rotate(180deg); }
+  .idea-cta:dir(rtl):is(:hover,:focus-visible) .idea-cta-arrow { transform:translateX(0) rotate(180deg); }
+  .idea-cta:dir(rtl):is(:hover,:focus-visible) .idea-cta-label { transform:translateX(12px); }
+  @media (prefers-reduced-motion:reduce) {
+    body .button.primary.idea-cta,
+    body .button.primary.idea-cta:is(:hover,:focus-visible,:active) { transform:none; transition:none; }
+    .idea-cta-label, .idea-cta-arrow { transition:none; }
+  }
+  body .representative-examples .section-heading { align-items:center; justify-content:space-between; }
+  body .representative-examples .section-heading h2 { max-width:75%; }
+  .idea-carousel-shell { position:relative; padding-top:12px; }
+  .idea-carousel-controls { display:flex; justify-content:flex-end; gap:8px; margin:0 0 4px; direction:ltr; }
+  .idea-carousel-controls button { width:44px; height:44px; display:grid; place-items:center; padding:0 0 3px; border:1px solid var(--line); border-radius:50%; background:transparent; color:var(--text); font-size:28px; line-height:1; transition:background .2s,border-color .2s; }
+  .idea-carousel-controls button:hover { border-color:var(--text); background:#ffffff0d; }
+  .idea-carousel { display:flex; gap:24px; overflow-x:auto; overflow-y:hidden; padding:20px 8px 28px; margin-inline:-8px; overscroll-behavior-x:contain; scrollbar-width:thin; scrollbar-color:#828d76 #ffffff0b; cursor:grab; touch-action:pan-x pan-y; }
+  .idea-carousel:active { cursor:grabbing; }
+  .idea-carousel > .idea-card { flex:0 0 clamp(205px,23vw,300px); min-width:0; }
+  body .idea-card { position:relative; --tilt-x:0deg; --tilt-y:0deg; transform:perspective(1000px) rotateX(0deg) rotateY(0deg); transition:transform .45s cubic-bezier(.2,.75,.2,1),filter .45s; transform-origin:50% 65%; }
+  .idea-card-visual { position:relative; }
+  body .idea-card .preview, body:has(.desktop-motion-track) .idea-card .preview { border-radius:14px; border:1px solid var(--line); }
+  .idea-card .ratio-label { left:12px; right:auto; }
+  .idea-card .preview img { user-select:none; -webkit-user-drag:none; }
+  body .idea-card h3 { line-height:1.5; overflow-wrap:anywhere; }
+  body .idea-card .card-link { min-height:44px; }
+  .favorite-button { position:absolute; z-index:3; top:10px; right:10px; width:42px; height:42px; padding:11px; display:grid; place-items:center; border:1px solid #ffffff60; border-radius:50%; color:#f1f3ea; background:#0d100cdd; backdrop-filter:blur(8px); transition:color .2s,transform .2s,background .2s; }
+  .favorite-button svg { width:20px; height:20px; }
+  .favorite-button:hover { transform:scale(1.08); }
+  .favorite-button[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); color:#19200d; }
+  .favorite-error { color:var(--error); font-size:13px; }
+  .favorites-page h1 { font-size:clamp(30px,3.5vw,48px); margin-bottom:18px; }
+  .favorites-page .section-intro { margin-bottom:36px; }
+  .favorites-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:40px 24px; }
+  html:not([lang="ja"]) .desktop-motion-hero-copy h1 { white-space:normal; max-width:1000px; font-size:clamp(30px,4.4vw,68px); line-height:1.25; }
+  html:not([lang="ja"]) .desktop-motion-hero-copy h1 span { transform:none; }
+  html:not([lang="ja"]) .desktop-motion-story h2 { font-size:clamp(25px,2.7vw,44px); line-height:1.4; letter-spacing:normal; }
+  html[dir="rtl"] .desktop-motion-story, html[dir="rtl"] .desktop-world-outro { text-align:right; }
+  html[dir="rtl"] .idea-card { direction:rtl; }
+  html[dir="rtl"] .idea-carousel { direction:ltr; }
+  @media (hover:hover) and (prefers-reduced-motion:no-preference) {
+    .idea-card:hover, .idea-card:focus-within { animation:idea-float 3s ease-in-out infinite; filter:drop-shadow(0 15px 20px #0005); }
+    @keyframes idea-float {
+      0%,100% { transform:perspective(1000px) translateY(-5px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)); }
+      50% { transform:perspective(1000px) translateY(-9px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)); }
+    }
+  }
+  @media (max-width:900px) {
+    body .unified-header nav > a, body:has(.desktop-motion-track) .unified-header nav > a { padding:10px; font-size:13px; }
+    body .unified-header .header-logo { width:135px; }
+    .language-picker { padding:8px; gap:5px; }
+    .language-picker select { width:100px; font-size:12px; }
+    .favorites-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:30px 20px; }
+    body .representative-examples .section-heading h2 { font-size:28px; max-width:70%; }
+  }
+  @media (prefers-reduced-motion:reduce) { .idea-card { animation:none!important; transform:none!important; transition:none!important; } }
+}

@@ -58,7 +58,10 @@ export function createCinemaGlobe(z: number) {
   packets.frustumCulled = false;
   earth.add(packets);
   const dummy = new THREE.Object3D();
-  const phoneModel = createGlassPhone();
+  const phoneModel = createGlassPhone({
+    color: "#080a09", metalness: 0.2, roughness: 0.65,
+    opacity: 0.94, clearcoat: 0.08, envMapIntensity: 0.12,
+  });
   const phone = phoneModel.group;
   phone.name = "outbound-phone";
   group.add(phone);
