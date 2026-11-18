@@ -19,6 +19,13 @@ export function useI18n() {
   return { ...context, t: (key: MessageKey, values?: Record<string, string | number>) => translate(context.locale, key, values) };
 }
 export function T({ k, values }: { k: MessageKey; values?: Record<string, string | number> }) { return useI18n().t(k, values); }
+export function IdeasHeading() {
+  const { locale, t } = useI18n();
+  const text = t("ideasHeading");
+  const start = locale === "ja" ? text.indexOf("ヒント") : -1;
+  if (start < 0) return text;
+  return <>{text.slice(0, start)}<span className="ideas-heading-hint">ヒント</span>{text.slice(start + "ヒント".length)}</>;
+}
 export function IdeaName({ slug, original }: { slug: string; original: string }) { return ideaTitle(useI18n().locale, slug, original); }
 export function LanguagePicker() {
   const { locale, setLocale, t } = useI18n();

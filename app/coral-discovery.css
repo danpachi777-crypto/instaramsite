@@ -3,6 +3,7 @@
 
 @media (min-width:601px) and (any-pointer:fine), (min-width:1200px) {
   :root { --coral:#f29aa8; }
+  .ideas-heading-hint { color:var(--coral); }
 
   /* A single, quiet pool of light marks the entrance to the ideas. */
   body .motion-home > .representative-examples { isolation:isolate; }
@@ -42,8 +43,10 @@
   .idea-carousel-progress > span { position:absolute; top:0; height:100%; min-width:8px; border-radius:inherit; background:var(--coral); box-shadow:0 0 12px #f29aa826; }
   .idea-carousel-range { color:var(--coral); font-size:12px; font-variant-numeric:tabular-nums; letter-spacing:.06em; }
   .idea-carousel-range > span { color:var(--muted); }
-  .idea-carousel-controls button:hover:not(:disabled) { color:var(--coral); border-color:#f29aa880; background:#f29aa812; }
+  .idea-carousel-controls button { transition:background-color .22s ease,border-color .22s ease,color .22s ease; }
+  .idea-carousel-controls button:is(:hover,:focus-visible):not(:disabled) { color:#ffd2db; border-color:#f29aa899; background:#f29aa829; }
   .idea-carousel-controls button:disabled { opacity:.3; cursor:default; }
+  .idea-carousel-controls button:disabled:hover { border-color:var(--line); background:transparent; }
   .idea-carousel-controls button:focus-visible,
   .idea-card :focus-visible { outline-color:var(--coral); }
 

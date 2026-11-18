@@ -5,7 +5,7 @@ import { getPublicTemplates } from "@/lib/templates";
 import { configIssue, isDemo } from "@/lib/env";
 import { EmptyTemplates } from "@/components/site";
 import { IdeaCarousel } from "@/components/idea-carousel";
-import { T } from "@/components/i18n";
+import { IdeasHeading, T } from "@/components/i18n";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { DesktopMotion } from "@/components/desktop-motion";
 import { ResponsiveView } from "@/components/responsive-view";
@@ -21,7 +21,7 @@ export default async function Home() {
       <DesktopMotion />
       <section className="container section representative-examples" id="examples" aria-labelledby="examples-title">
         <div className="section-heading">
-          <h2 id="examples-title"><T k="ideasHeading" /></h2>
+          <h2 id="examples-title"><IdeasHeading /></h2>
           <Link className="text-link" href="/templates"><T k="allIdeas" /></Link>
         </div>
         <p className="section-intro"><T k="ideasIntro" /></p>
